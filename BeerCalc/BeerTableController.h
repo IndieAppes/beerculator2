@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  BeerTableController.h
 //  BeerCalc
 //
 //  Created by Josh Palmer on 14/09/2013.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface BeerTableController : UITableViewController
 
 @end
