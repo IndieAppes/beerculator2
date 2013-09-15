@@ -30,10 +30,14 @@
 {
     [super viewDidLoad];
     
+    [self.tableView registerNib:[UINib nibWithNibName:@"BeerCell"
+                                               bundle:[NSBundle mainBundle]]
+         forCellReuseIdentifier:@"beerCell"];
+    
     // set up and initialize our example Beer
     
     Beer * initialExampleBeer = [Beer alloc];
-    initialExampleBeer.brand = [NSString @"Fosters"];
+    initialExampleBeer.brand = @"Example: Fosters";
     initialExampleBeer.canVolume = 440;
     initialExampleBeer.alcoholByVolume = [NSDecimalNumber decimalNumberWithString:@"4.0"];
     initialExampleBeer.price = [NSDecimalNumber decimalNumberWithString:@"4.0"];
@@ -42,7 +46,8 @@
     
     self.beers = [[NSMutableArray alloc]
              initWithObjects:initialExampleBeer, nil];
-
+    
+    [self.tableView reloadData];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -60,16 +65,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [beers count];
+    return [self.beers count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
