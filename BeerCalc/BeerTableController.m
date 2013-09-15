@@ -7,12 +7,15 @@
 //
 
 #import "BeerTableController.h"
+#import "Beer.h"
+#import "BeerCell.h"
 
 @interface BeerTableController ()
 
 @end
 
 @implementation BeerTableController
+@synthesize beers;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -26,6 +29,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // set up and initialize our example Beer
+    
+    Beer * initialExampleBeer = [Beer alloc];
+    initialExampleBeer.brand = [NSString @"Fosters"];
+    initialExampleBeer.canVolume = 440;
+    initialExampleBeer.alcoholByVolume = [NSDecimalNumber decimalNumberWithString:@"4.0"];
+    initialExampleBeer.price = [NSDecimalNumber decimalNumberWithString:@"4.0"];
+    initialExampleBeer.numberOfCans = 4;
+
+    
+    self.beers = [[NSMutableArray alloc]
+             initWithObjects:initialExampleBeer, nil];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -53,16 +69,41 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [beers count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"beerCell";
+    BeerCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
     
+    Beer * beer = [beers objectAtIndex:indexPath.row];
+    
+    cell.nameLabel.text = beer.brand;
+
+    NSNumberFormatter * formatter = [[NSNumberFormatter alloc] init];
+    formatter.numberStyle = NSNumberFormatterCurrencyStyle;
+    formatter.locale = [NSLocale currentLocale];
+    
+    cell.priceLabel.text = [formatter stringFromNumber:beer.pricePerVolume];
+    
+    NSMutableString * descriptionString = [[NSMutableString alloc] init];
+    
+    // build string of form "4 x 440ml @ 4.0%, £4.00"
+    
+    [descriptionString appendString:[@(beer.numberOfCans) stringValue]];
+    [descriptionString appendString:@" x "];
+    [descriptionString appendString:[@(beer.canVolume) stringValue]];
+    [descriptionString appendString:@"ml @ "];
+    [descriptionString appendString:beer.alcoholByVolume.stringValue];
+    [descriptionString appendString:@"%, "];
+    [descriptionString appendString:[formatter stringFromNumber:beer.price]];
+    
+    // im the 8 lines instead of using a fucking stringBUilder class or operators on strings lol
+    
+    cell.descriptionLabel.text = descriptionString;
     return cell;
 }
 

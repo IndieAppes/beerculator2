@@ -10,4 +10,6 @@
 
 @interface BeerTableController : UITableViewController
 
+@property (nonatomic, retain) NSMutableArray * beers;
+
 @end
