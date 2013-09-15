@@ -21,12 +21,13 @@
     NSNumber * number = [NSNumber numberWithInt:(canVolume * numberOfCans)];
     
     NSDecimalNumber * quotientDecimal = [NSDecimalNumber decimalNumberWithDecimal:[number decimalValue]];
+    
     NSDecimalNumber * anotherDumbIntermediateStep = [NSDecimalNumber decimalNumberWithString:@"1000"];
     anotherDumbIntermediateStep = [anotherDumbIntermediateStep decimalNumberByDividingBy:quotientDecimal];
+        
+    NSDecimalNumber * decimal = [price decimalNumberByDividingBy:alcoholByVolume];
     
-    NSDecimalNumber * decimal = [price decimalNumberByMultiplyingBy:alcoholByVolume];
-    
-    return [decimal decimalNumberByDividingBy:anotherDumbIntermediateStep];
+    return [decimal decimalNumberByMultiplyingBy:anotherDumbIntermediateStep];
 }
 
 

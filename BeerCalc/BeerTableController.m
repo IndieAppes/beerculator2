@@ -34,6 +34,11 @@
                                                bundle:[NSBundle mainBundle]]
          forCellReuseIdentifier:@"beerCell"];
     
+    
+    [self.tableView setContentInset:UIEdgeInsetsMake(20.0f, self.tableView.contentInset.left, self.tableView.contentInset.bottom, self.tableView.contentInset.right)];
+    // adjust insets for iOS 7
+    
+    
     // set up and initialize our example Beer
     
     Beer * initialExampleBeer = [Beer alloc];
@@ -104,7 +109,7 @@
     [descriptionString appendString:@"%, "];
     [descriptionString appendString:[formatter stringFromNumber:beer.price]];
     
-    // im the 8 lines instead of using a fucking stringBUilder class or operators on strings lol
+    // im the 8 lines instead of using a fucking stringBuilder class or operators on strings lol
     
     cell.descriptionLabel.text = descriptionString;
     return cell;
