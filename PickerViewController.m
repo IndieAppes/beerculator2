@@ -20,11 +20,24 @@
 @synthesize beerToBuild;
 @synthesize stage;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withMode:(beerStage)mode withBeer:(Beer *)beerBeingBuilt
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
+        self.stage = mode;
+        
+        // if we are continuing from an already built beer, use that one.
+        // otherwise, make a new one
+        
+        if (beerBeingBuilt != nil) {
+            beerToBuild = beerBeingBuilt;
+        }
+        else
+        {
+            beerToBuild = [[Beer alloc] init];
+        }
     }
     return self;
 }
@@ -33,13 +46,36 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
+
     UINib * cellNib = [UINib nibWithNibName:@"PickerCell" bundle:nil];
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"pickerCell"];
     
-    stage = myBeerBrand; // set it to the first stage
+    // populate our presets based on the selected mode/stage
     
-    self.presetValues = [[PresetValuesHelper presetBrandsFactory] copy];
+    switch (stage) {
+        case myBeerBrand:
+            self.presetValues = [[PresetValuesHelper presetBrandsFactory] copy];
+            break;
+        
+        case myBeerNumberOfCans:
+            self.presetValues = [[PresetValuesHelper presetNumberOfCansFactory] copy];
+            break;
+        
+        case myBeerCanVolume:
+            self.presetValues = [[PresetValuesHelper presetVolumesFactory] copy];
+            break;
+        
+        case myBeerAlcoholByVolume:
+            self.presetValues = [[PresetValuesHelper presetABVFactory] copy];
+            break;
+        case myBeerPrice:
+            // shouldn't get here using this view because there's no presets for this, so fuck off i guess
+            NSLog(@"something broke. got to pickerCollView with price selection option. aaaa");
+            
+        default:
+            break;
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,7 +88,31 @@
 {
     PickerCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"pickerCell" forIndexPath:indexPath];
     
-    cell.label.text = [[self.presetValues objectAtIndex:indexPath] stringValue];
+    // conditionally format based on what stage we're in
+    
+    NSString * cellLabel = [[self.presetValues objectAtIndex:indexPath.row] stringValue];
+        
+    switch (stage)
+    {
+        case myBeerBrand:
+        case myBeerNumberOfCans:
+            cell.pickerLabel.text = cellLabel;
+            // just print string representation for brands (String) and cans (int)
+            break;
+            
+        case myBeerAlcoholByVolume:
+            cell.pickerLabel.text = [cellLabel stringByAppendingString:@"%"];
+            break;
+            
+        case myBeerCanVolume:
+            cell.pickerLabel.text = [cellLabel stringByAppendingString:@" ml"];
+            break;
+
+        default:
+            break;
+    }
+    
+    cell.pickerLabel.text = [self.presetValues objectAtIndex:indexPath.row];
     return cell;
 }
 

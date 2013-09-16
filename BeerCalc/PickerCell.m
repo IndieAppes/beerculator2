@@ -10,7 +10,7 @@
 
 @implementation PickerCell
 
-@synthesize label;
+@synthesize pickerLabel;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -21,13 +21,22 @@
     return self;
 }
 
-/*
+
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    // Drawing code
+    CGRect insetRect = CGRectInset(rect, 0.5, 0.5);
+    UIBezierPath * path = [UIBezierPath bezierPathWithRoundedRect:insetRect cornerRadius:6];
+    
+    [path setLineWidth:0.5];
+    
+    [[UIColor whiteColor] setFill];
+    [path fill];
+    
+    [[UIColor darkGrayColor] setStroke];
+    [path stroke];
 }
-*/
+
 
 @end

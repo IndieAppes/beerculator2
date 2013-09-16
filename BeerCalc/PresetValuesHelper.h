@@ -15,4 +15,13 @@
 +(NSArray *) presetVolumesFactory;
 +(NSArray *) presetABVFactory;
 
+typedef enum beerStages
+{
+    myBeerBrand,
+    myBeerNumberOfCans,
+    myBeerCanVolume,
+    myBeerAlcoholByVolume,
+    myBeerPrice
+} beerStage;
+
 @end

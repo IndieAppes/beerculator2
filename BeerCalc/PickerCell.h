@@ -10,6 +10,6 @@
 
 @interface PickerCell : UICollectionViewCell
 
-@property (nonatomic, copy) IBOutlet UILabel * label;
+@property (nonatomic, strong) IBOutlet UILabel * pickerLabel;
 
 @end

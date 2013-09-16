@@ -1,5 +1,5 @@
 //
-//  PickerCVControllerViewController.h
+//  PickerViewController.h
 //  BeerCalc
 //
 //  Created by Josh Palmer on 15/09/2013.

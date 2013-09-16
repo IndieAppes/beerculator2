@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7721294417E4890E008F0622 /* BeerTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7721294317E4890E008F0622 /* BeerTableController.m */; };
+		7764B42417E75BF000F45E71 /* PickerPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7764B42317E75BF000F45E71 /* PickerPageViewController.m */; };
 		77A3E1B917E5C676009620EF /* BeerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A3E1B817E5C676009620EF /* BeerCell.m */; };
 		77A3E1BB17E5CDD4009620EF /* BeerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77A3E1BA17E5CDD4009620EF /* BeerCell.xib */; };
 		77A3E1BE17E5CF1C009620EF /* Beer.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A3E1BD17E5CF1C009620EF /* Beer.m */; };
@@ -44,6 +45,8 @@
 /* Begin PBXFileReference section */
 		7721294217E4890E008F0622 /* BeerTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeerTableController.h; sourceTree = "<group>"; };
 		7721294317E4890E008F0622 /* BeerTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeerTableController.m; sourceTree = "<group>"; };
+		7764B42217E75BF000F45E71 /* PickerPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerPageViewController.h; sourceTree = "<group>"; };
+		7764B42317E75BF000F45E71 /* PickerPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerPageViewController.m; sourceTree = "<group>"; };
 		77A3E1B717E5C676009620EF /* BeerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeerCell.h; sourceTree = "<group>"; };
 		77A3E1B817E5C676009620EF /* BeerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeerCell.m; sourceTree = "<group>"; };
 		77A3E1BA17E5CDD4009620EF /* BeerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BeerCell.xib; path = ../BeerCell.xib; sourceTree = "<group>"; };
@@ -133,26 +136,28 @@
 		77A58B6617E47F01001FE7B2 /* BeerCalc */ = {
 			isa = PBXGroup;
 			children = (
-				77A3E1C217E6213F009620EF /* PickerViewController.h */,
-				77A3E1C517E70913009620EF /* PresetValuesHelper.h */,
-				77A3E1C617E70913009620EF /* PresetValuesHelper.m */,
-				77A3E1C317E6213F009620EF /* PickerViewController.m */,
 				77A58B6F17E47F01001FE7B2 /* AppDelegate.h */,
 				77A58B7017E47F01001FE7B2 /* AppDelegate.m */,
-				77A58B7217E47F01001FE7B2 /* Main_iPhone.storyboard */,
-				77A3E1C817E71870009620EF /* PickerCell.xib */,
-				77A3E1CA17E71E9C009620EF /* PickerCell.h */,
-				77A3E1CB17E71E9C009620EF /* PickerCell.m */,
-				77A58B7517E47F01001FE7B2 /* Main_iPad.storyboard */,
-				77A58B7B17E47F01001FE7B2 /* Images.xcassets */,
-				77A58B6717E47F01001FE7B2 /* Supporting Files */,
-				7721294217E4890E008F0622 /* BeerTableController.h */,
-				7721294317E4890E008F0622 /* BeerTableController.m */,
-				77A3E1BA17E5CDD4009620EF /* BeerCell.xib */,
-				77A3E1B717E5C676009620EF /* BeerCell.h */,
-				77A3E1B817E5C676009620EF /* BeerCell.m */,
 				77A3E1BC17E5CF1C009620EF /* Beer.h */,
 				77A3E1BD17E5CF1C009620EF /* Beer.m */,
+				77A3E1B717E5C676009620EF /* BeerCell.h */,
+				77A3E1B817E5C676009620EF /* BeerCell.m */,
+				77A3E1BA17E5CDD4009620EF /* BeerCell.xib */,
+				7721294217E4890E008F0622 /* BeerTableController.h */,
+				7721294317E4890E008F0622 /* BeerTableController.m */,
+				77A58B7B17E47F01001FE7B2 /* Images.xcassets */,
+				77A58B7517E47F01001FE7B2 /* Main_iPad.storyboard */,
+				77A58B7217E47F01001FE7B2 /* Main_iPhone.storyboard */,
+				77A3E1CA17E71E9C009620EF /* PickerCell.h */,
+				77A3E1CB17E71E9C009620EF /* PickerCell.m */,
+				77A3E1C817E71870009620EF /* PickerCell.xib */,
+				7764B42217E75BF000F45E71 /* PickerPageViewController.h */,
+				7764B42317E75BF000F45E71 /* PickerPageViewController.m */,
+				77A3E1C217E6213F009620EF /* PickerViewController.h */,
+				77A3E1C317E6213F009620EF /* PickerViewController.m */,
+				77A3E1C517E70913009620EF /* PresetValuesHelper.h */,
+				77A3E1C617E70913009620EF /* PresetValuesHelper.m */,
+				77A58B6717E47F01001FE7B2 /* Supporting Files */,
 			);
 			path = BeerCalc;
 			sourceTree = "<group>";
@@ -290,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				77A3E1BE17E5CF1C009620EF /* Beer.m in Sources */,
+				7764B42417E75BF000F45E71 /* PickerPageViewController.m in Sources */,
 				77A58B7117E47F01001FE7B2 /* AppDelegate.m in Sources */,
 				77A58B6D17E47F01001FE7B2 /* main.m in Sources */,
 				7721294417E4890E008F0622 /* BeerTableController.m in Sources */,

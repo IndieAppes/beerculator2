@@ -35,8 +35,9 @@
          forCellReuseIdentifier:@"beerCell"];
     
     
-    [self.tableView setContentInset:UIEdgeInsetsMake(20.0f, self.tableView.contentInset.left, self.tableView.contentInset.bottom, self.tableView.contentInset.right)];
+    // [self.tableView setContentInset:UIEdgeInsetsMake(20.0f, self.tableView.contentInset.left, self.tableView.contentInset.bottom, self.tableView.contentInset.right)];
     // adjust insets for iOS 7
+    // uncomment if we decide to remove nav bar
     
     
     // set up and initialize our example Beer
