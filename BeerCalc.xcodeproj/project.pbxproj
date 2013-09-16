@@ -11,6 +11,10 @@
 		77A3E1B917E5C676009620EF /* BeerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A3E1B817E5C676009620EF /* BeerCell.m */; };
 		77A3E1BB17E5CDD4009620EF /* BeerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77A3E1BA17E5CDD4009620EF /* BeerCell.xib */; };
 		77A3E1BE17E5CF1C009620EF /* Beer.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A3E1BD17E5CF1C009620EF /* Beer.m */; };
+		77A3E1C417E6213F009620EF /* PickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A3E1C317E6213F009620EF /* PickerViewController.m */; };
+		77A3E1C717E70913009620EF /* PresetValuesHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A3E1C617E70913009620EF /* PresetValuesHelper.m */; };
+		77A3E1C917E71870009620EF /* PickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77A3E1C817E71870009620EF /* PickerCell.xib */; };
+		77A3E1CC17E71E9C009620EF /* PickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A3E1CB17E71E9C009620EF /* PickerCell.m */; };
 		77A58B6117E47F01001FE7B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A58B6017E47F01001FE7B2 /* Foundation.framework */; };
 		77A58B6317E47F01001FE7B2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A58B6217E47F01001FE7B2 /* CoreGraphics.framework */; };
 		77A58B6517E47F01001FE7B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A58B6417E47F01001FE7B2 /* UIKit.framework */; };
@@ -45,6 +49,13 @@
 		77A3E1BA17E5CDD4009620EF /* BeerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BeerCell.xib; path = ../BeerCell.xib; sourceTree = "<group>"; };
 		77A3E1BC17E5CF1C009620EF /* Beer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beer.h; sourceTree = "<group>"; };
 		77A3E1BD17E5CF1C009620EF /* Beer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Beer.m; sourceTree = "<group>"; };
+		77A3E1C217E6213F009620EF /* PickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PickerViewController.h; path = ../PickerViewController.h; sourceTree = "<group>"; };
+		77A3E1C317E6213F009620EF /* PickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PickerViewController.m; path = ../PickerViewController.m; sourceTree = "<group>"; };
+		77A3E1C517E70913009620EF /* PresetValuesHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresetValuesHelper.h; sourceTree = "<group>"; };
+		77A3E1C617E70913009620EF /* PresetValuesHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresetValuesHelper.m; sourceTree = "<group>"; };
+		77A3E1C817E71870009620EF /* PickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickerCell.xib; sourceTree = "<group>"; };
+		77A3E1CA17E71E9C009620EF /* PickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerCell.h; sourceTree = "<group>"; };
+		77A3E1CB17E71E9C009620EF /* PickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerCell.m; sourceTree = "<group>"; };
 		77A58B5D17E47F01001FE7B2 /* BeerCalc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeerCalc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77A58B6017E47F01001FE7B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		77A58B6217E47F01001FE7B2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -122,9 +133,16 @@
 		77A58B6617E47F01001FE7B2 /* BeerCalc */ = {
 			isa = PBXGroup;
 			children = (
+				77A3E1C217E6213F009620EF /* PickerViewController.h */,
+				77A3E1C517E70913009620EF /* PresetValuesHelper.h */,
+				77A3E1C617E70913009620EF /* PresetValuesHelper.m */,
+				77A3E1C317E6213F009620EF /* PickerViewController.m */,
 				77A58B6F17E47F01001FE7B2 /* AppDelegate.h */,
 				77A58B7017E47F01001FE7B2 /* AppDelegate.m */,
 				77A58B7217E47F01001FE7B2 /* Main_iPhone.storyboard */,
+				77A3E1C817E71870009620EF /* PickerCell.xib */,
+				77A3E1CA17E71E9C009620EF /* PickerCell.h */,
+				77A3E1CB17E71E9C009620EF /* PickerCell.m */,
 				77A58B7517E47F01001FE7B2 /* Main_iPad.storyboard */,
 				77A58B7B17E47F01001FE7B2 /* Images.xcassets */,
 				77A58B6717E47F01001FE7B2 /* Supporting Files */,
@@ -250,6 +268,7 @@
 				77A58B7717E47F01001FE7B2 /* Main_iPad.storyboard in Resources */,
 				77A3E1BB17E5CDD4009620EF /* BeerCell.xib in Resources */,
 				77A58B7C17E47F01001FE7B2 /* Images.xcassets in Resources */,
+				77A3E1C917E71870009620EF /* PickerCell.xib in Resources */,
 				77A58B7417E47F01001FE7B2 /* Main_iPhone.storyboard in Resources */,
 				77A58B6B17E47F01001FE7B2 /* InfoPlist.strings in Resources */,
 			);
@@ -275,6 +294,9 @@
 				77A58B6D17E47F01001FE7B2 /* main.m in Sources */,
 				7721294417E4890E008F0622 /* BeerTableController.m in Sources */,
 				77A3E1B917E5C676009620EF /* BeerCell.m in Sources */,
+				77A3E1CC17E71E9C009620EF /* PickerCell.m in Sources */,
+				77A3E1C417E6213F009620EF /* PickerViewController.m in Sources */,
+				77A3E1C717E70913009620EF /* PresetValuesHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
