@@ -8,20 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Beer.h"
+#import "PresetValuesHelper.h"
 
 @interface PickerViewController : UICollectionViewController
 
 @property (nonatomic, strong) NSMutableArray * presetValues;
 @property (nonatomic, strong) Beer * beerToBuild;
-
-typedef enum beerStages
-{
-    myBeerBrand,
-    myBeerNumberOfCans,
-    myBeerCanVolume,
-    myBeerAlcoholByVolume,
-    myBeerPrice
-} beerStage;
 
 @property (nonatomic, assign) beerStage stage;
 

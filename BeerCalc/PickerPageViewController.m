@@ -7,8 +7,8 @@
 //
 
 #import "PickerPageViewController.h"
-#import "PickerViewController.h'"
-
+#import "PickerViewController.h"
+#import "PresetValuesHelper.h"
 @interface PickerPageViewController ()
 
 @end
@@ -58,7 +58,7 @@
 
 # pragma mark - UIPageViewControllerDelegate Methods
 
-- pa
+
 
 #pragma mark - View Lifecycle stuff
 
@@ -70,8 +70,18 @@
         
         self.viewControllers = [[NSArray alloc] init];
         
-        viewControllers = [[NSArray arrayWithObjects:
-                            [[PickerViewController alloc] init], nil]]
+        NSMutableArray * setupArray = [[NSMutableArray alloc] init];
+        for (int i = myBeerBrand; i < myBeerPrice ; i++)
+        {
+            PickerViewController * vc = [[PickerViewController alloc] init];
+            vc.stage = i;
+            [setupArray addObject:vc];
+        }
+        // add our prices VC later on
+        
+        viewControllers = [setupArray copy];
+        
+        // finalize the array
         
         self.delegate = self;
         self.dataSource = self;
@@ -92,6 +102,5 @@
     // Dispose of any resources that can be recreated.
 }
 
--
 
 @end

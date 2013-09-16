@@ -90,8 +90,22 @@
     
     // conditionally format based on what stage we're in
     
-    NSString * cellLabel = [[self.presetValues objectAtIndex:indexPath.row] stringValue];
-        
+    NSString * cellLabel;
+    
+    id currentVal = [self.presetValues objectAtIndex:indexPath.row];
+    
+    // since only the Brands have string literals, take stringValue for all other stages
+    
+    if (stage == myBeerBrand)
+    {
+        cellLabel = currentVal;
+    }
+    else
+    {
+        cellLabel = [currentVal stringValue];
+   
+    }
+    
     switch (stage)
     {
         case myBeerBrand:
