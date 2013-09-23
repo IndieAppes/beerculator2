@@ -9,11 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "Beer.h"
 #import "PresetValuesHelper.h"
+#import "PickerViewController.h"
 
-@interface PickerPageViewController : UIPageViewController<UIPageViewControllerDataSource, UIPageViewControllerDelegate>
+@protocol BeerUpdateDelegate <NSObject>
+- (void) addBeerToList:(Beer *)beer;
+@end
+
+
+@interface PickerPageViewController : UIPageViewController<UIPageViewControllerDataSource, UIPageViewControllerDelegate, PickerDelegate>
 
 @property (nonatomic, strong) Beer * beerToBuild;
 @property (nonatomic, assign) beerStage stage;
-@property (nonatomic, strong) NSArray * viewControllers;
+@property (nonatomic, strong) NSArray * myViewControllers;
+
+@property (assign) IBOutlet id <BeerUpdateDelegate> BeerDelegate;
 
 @end

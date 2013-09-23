@@ -19,25 +19,14 @@
 @synthesize presetValues;
 @synthesize beerToBuild;
 @synthesize stage;
+@synthesize delegate;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withMode:(beerStage)mode withBeer:(Beer *)beerBeingBuilt
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil // withMode:(beerStage)mode withBeer:(Beer *)beerBeingBuilt
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
         
-        self.stage = mode;
-        
-        // if we are continuing from an already built beer, use that one.
-        // otherwise, make a new one
-        
-        if (beerBeingBuilt != nil) {
-            beerToBuild = beerBeingBuilt;
-        }
-        else
-        {
-            beerToBuild = [[Beer alloc] init];
-        }
     }
     return self;
 }
@@ -75,7 +64,12 @@
         default:
             break;
     }
+    self.beerToBuild = [[Beer alloc] init];
+    self.beerToBuild = [self.delegate getBeerOnLoad];
     
+    // init the beer, grab the premade beer from parent
+    
+    NSLog(@"Should have an initialized beer");
 }
 
 - (void)didReceiveMemoryWarning
@@ -126,7 +120,6 @@
             break;
     }
     
-    cell.pickerLabel.text = [self.presetValues objectAtIndex:indexPath.row];
     return cell;
 }
 
@@ -139,7 +132,39 @@
 }
 
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (stage) {
+        case myBeerBrand:
+            [beerToBuild setBrand:[presetValues objectAtIndex:indexPath.row]];
+            NSLog(@"Brand set to %@", beerToBuild.brand);
+            break;
+            
+        case myBeerCanVolume:
+            beerToBuild.canVolume = [[presetValues objectAtIndex:indexPath.row] intValue];
+            
+            // canVolume and numberOfCans are ints, cast from obj to int so we dont end up creatin stuff w/pointers
+            break;
+            
+        case myBeerAlcoholByVolume:
+            beerToBuild.alcoholByVolume = [presetValues objectAtIndex:indexPath.row];
+            break;
+            
+        case myBeerNumberOfCans:
+            beerToBuild.numberOfCans = [[presetValues objectAtIndex:indexPath.row] intValue];
 
+        default:
+            break;
+    }
+    
+    NSLog(@"Selection made: %@", [[presetValues objectAtIndex:indexPath.row] description]);
+    
+    // pass the beer up and along, advance to next view
+    
+    [self.delegate updateBeer:beerToBuild];
+    [self.delegate advanceViewController];
+    
+}
 
 
 @end

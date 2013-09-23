@@ -17,5 +17,6 @@
 @property (nonatomic, copy) NSDecimalNumber * price;
 
 - (NSDecimalNumber *) pricePerVolume;
+- (NSDecimalNumber *) pricePerUnit;
 
 @end

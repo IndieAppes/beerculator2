@@ -16,7 +16,16 @@
 @synthesize alcoholByVolume;
 @synthesize price;
 
-- (NSDecimalNumber *) pricePerVolume
+-(id)init {
+    self = [super init];
+    if (self) {
+        // do stuff
+        brand = [[NSString alloc] init];
+    }
+    return self;
+}
+
+- (NSDecimalNumber *) pricePerUnit
 {
     NSNumber * number = [NSNumber numberWithInt:(canVolume * numberOfCans)];
     
@@ -29,6 +38,5 @@
     
     return [decimal decimalNumberByMultiplyingBy:anotherDumbIntermediateStep];
 }
-
 
 @end

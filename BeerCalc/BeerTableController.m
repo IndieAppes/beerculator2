@@ -96,7 +96,7 @@
     formatter.numberStyle = NSNumberFormatterCurrencyStyle;
     formatter.locale = [NSLocale currentLocale];
     
-    cell.priceLabel.text = [formatter stringFromNumber:beer.pricePerVolume];
+    cell.priceLabel.text = [formatter stringFromNumber:beer.pricePerUnit];
     
     NSMutableString * descriptionString = [[NSMutableString alloc] init];
     
@@ -114,6 +114,22 @@
     
     cell.descriptionLabel.text = descriptionString;
     return cell;
+}
+
+- (void) addBeerToList:(Beer *)beer
+{
+    [self.beers addObject:beer];
+    // this is where we should sort it!
+    // TODO: sort array using a lambda
+    
+    [beers sortUsingComparator:^NSComparisonResult(id a, id b) {
+        NSDecimalNumber * first = [(Beer*) a pricePerUnit];
+        NSDecimalNumber* second = [(Beer*) b pricePerUnit];
+        return [first compare:second];
+    }];
+    
+    [self.tableView reloadData];
+    return;
 }
 
 /*
@@ -155,7 +171,7 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a story board-based application, you will often want to do a little preparation before navigation
@@ -163,8 +179,15 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    PickerPageViewController * destVC = [segue destinationViewController];
+    destVC.BeerDelegate = self;
+    // set the beerdelegate
+    
+    // TODO: maybe add a class check incase we add other segues and break shit
+    
 }
 
- */
+
 
 @end

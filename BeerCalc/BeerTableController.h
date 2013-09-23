@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PickerPageViewController.h"
 
-@interface BeerTableController : UITableViewController
+
+@interface BeerTableController : UITableViewController <BeerUpdateDelegate>
 
 @property (nonatomic, retain) NSMutableArray * beers;
+
 
 @end

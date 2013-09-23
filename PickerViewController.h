@@ -10,11 +10,19 @@
 #import "Beer.h"
 #import "PresetValuesHelper.h"
 
-@interface PickerViewController : UICollectionViewController
+@protocol PickerDelegate <NSObject>
+- (void)updateBeer:(Beer *)beer;
+- (Beer *) getBeerOnLoad;
+- (void)advanceViewController;
+@end
+
+@interface PickerViewController : UICollectionViewController <UICollectionViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray * presetValues;
 @property (nonatomic, strong) Beer * beerToBuild;
 
 @property (nonatomic, assign) beerStage stage;
+
+@property (assign) id <PickerDelegate> delegate;
 
 @end
