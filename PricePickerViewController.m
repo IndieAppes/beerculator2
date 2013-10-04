@@ -72,6 +72,8 @@
     // self.beerToBuild = [self.delegate getBeerOnLoad];
     // get the beer
     
+    
+    
     self.title = @"Price";
     // subtitle? extra view??!
     

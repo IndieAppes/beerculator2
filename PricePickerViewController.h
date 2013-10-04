@@ -21,7 +21,7 @@
 - (void) addBeerToList:(Beer *)beer;
 @end
 
-@interface PricePickerViewController : UIViewController <UITextFieldDelegate>
+@interface PricePickerViewController : UIViewController <UITextFieldDelegate, UICollectionViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField* textField;
 @property (strong, nonatomic) IBOutlet UILabel* currencyLabel;

@@ -12,18 +12,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iLF-K1-mdd">
-                            <size key="itemSize" width="155" height="55"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="F7v-rB-IdU">
+                            <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="50" height="55"/>
+                            <size key="footerReferenceSize" width="280" height="55"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells/>
-                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="footerPicker" id="tPD-qy-SQO" customClass="footerPicker">
+                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="footerPicker" id="VLX-Na-mrQ" customClass="footerPicker">
                             <rect key="frame" x="0.0" y="64" width="320" height="55"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Other:" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Zn9-4s-HBc">
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Other:" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Mw-bP-20Q">
                                     <rect key="frame" x="20" y="13" width="280" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -31,7 +31,7 @@
                                 </textField>
                             </subviews>
                             <connections>
-                                <outlet property="customPicker" destination="Zn9-4s-HBc" id="jax-Jr-n0F"/>
+                                <outlet property="customPicker" destination="3Mw-bP-20Q" id="se0-8u-u6C"/>
                             </connections>
                         </collectionReusableView>
                         <connections>

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "77A58B5C17E47F01001FE7B2"
-               BuildableName = "BeerCalc.app"
+               BuildableName = "Beerculator.app"
                BlueprintName = "Beerculator"
                ReferencedContainer = "container:Beerculator.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "77A58B8017E47F01001FE7B2"
-               BuildableName = "BeerCalcTests.xctest"
+               BuildableName = "BeerculatorTests.xctest"
                BlueprintName = "BeerculatorTests"
                ReferencedContainer = "container:Beerculator.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "77A58B5C17E47F01001FE7B2"
-            BuildableName = "BeerCalc.app"
+            BuildableName = "Beerculator.app"
             BlueprintName = "Beerculator"
             ReferencedContainer = "container:Beerculator.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "77A58B5C17E47F01001FE7B2"
-            BuildableName = "BeerCalc.app"
+            BuildableName = "Beerculator.app"
             BlueprintName = "Beerculator"
             ReferencedContainer = "container:Beerculator.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "77A58B5C17E47F01001FE7B2"
-            BuildableName = "BeerCalc.app"
+            BuildableName = "Beerculator.app"
             BlueprintName = "Beerculator"
             ReferencedContainer = "container:Beerculator.xcodeproj">
          </BuildableReference>

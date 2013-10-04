@@ -23,7 +23,6 @@
 @synthesize presetValues;
 @synthesize beerToBuild;
 @synthesize stage;
-@synthesize delegate;
 @synthesize nextViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil // withMode:(beerStage)mode withBeer:(Beer *)beerBeingBuilt
@@ -42,8 +41,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    
-
     UINib * cellNib = [UINib nibWithNibName:@"PickerCell" bundle:nil];
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"pickerCell"];
     
@@ -251,6 +248,20 @@
 //{
 //    
 //}
+
+#pragma mark – UICollectionViewDelegateFlowLayout
+
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGSizeMake(130, 55);
+}
+
+// 3
+- (UIEdgeInsets)collectionView:
+(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(20, 20, 20, 20);
+}
 
 
 @end
