@@ -39,4 +39,15 @@
     return [decimal decimalNumberByMultiplyingBy:anotherDumbIntermediateStep];
 }
 
+- (NSDecimalNumber* ) pricePerVolume
+{
+    NSNumber * totalVolume = [NSNumber numberWithInt:(canVolume * numberOfCans)];
+    NSDecimalNumber * totalDecimalVolume = [NSDecimalNumber decimalNumberWithDecimal:[(totalVolume) decimalValue]];
+    
+    NSDecimalNumber * pricePerMl = price;
+    pricePerMl = [pricePerMl decimalNumberByDividingBy:totalDecimalVolume];
+    // TODO: implement this
+    return pricePerMl;
+}
+
 @end

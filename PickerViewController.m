@@ -9,8 +9,12 @@
 #import "PickerViewController.h"
 #import "PresetValuesHelper.h"
 #import "PickerCell.h"
+#import "PricePickerViewController.h"
+#import "footerPicker.h"
 
 @interface PickerViewController ()
+
+@property UIViewController* nextViewController;
 
 @end
 
@@ -20,12 +24,14 @@
 @synthesize beerToBuild;
 @synthesize stage;
 @synthesize delegate;
+@synthesize nextViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil // withMode:(beerStage)mode withBeer:(Beer *)beerBeingBuilt
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
         
     }
     return self;
@@ -35,27 +41,34 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    
 
     UINib * cellNib = [UINib nibWithNibName:@"PickerCell" bundle:nil];
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"pickerCell"];
     
     // populate our presets based on the selected mode/stage
+    // set nav view title and set small back button
     
     switch (stage) {
         case myBeerBrand:
-            self.presetValues = [[PresetValuesHelper presetBrandsFactory] copy];
+            self.presetValues = [[PresetValuesHelper presetBrandsFactory] mutableCopy];
+            self.title = @"Beer name";
             break;
         
         case myBeerNumberOfCans:
-            self.presetValues = [[PresetValuesHelper presetNumberOfCansFactory] copy];
+            self.presetValues = [[PresetValuesHelper presetNumberOfCansFactory] mutableCopy];
+            self.title = @"Number of cans";
             break;
         
         case myBeerCanVolume:
-            self.presetValues = [[PresetValuesHelper presetVolumesFactory] copy];
+            self.presetValues = [[PresetValuesHelper presetVolumesFactory] mutableCopy];
+            self.title = @"Volume of each can";
             break;
         
         case myBeerAlcoholByVolume:
-            self.presetValues = [[PresetValuesHelper presetABVFactory] copy];
+            self.presetValues = [[PresetValuesHelper presetABVFactory] mutableCopy];
+            self.title = @"Percentage alcohol by volume";
             break;
         case myBeerPrice:
             // shouldn't get here using this view because there's no presets for this, so fuck off i guess
@@ -64,18 +77,42 @@
         default:
             break;
     }
-    self.beerToBuild = [[Beer alloc] init];
-    self.beerToBuild = [self.delegate getBeerOnLoad];
+    if (beerToBuild == nil) {
+        self.beerToBuild = [[Beer alloc] init];
+    }
     
-    // init the beer, grab the premade beer from parent
+    // init the beer if we don't already have one
     
-    NSLog(@"Should have an initialized beer");
+//    [self.presetValues addObject:@"Other"];
+    
+    
+    // forward swipe gesture recognizer
+    UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeForward:)];
+    swipeGesture.numberOfTouchesRequired = 1;
+    swipeGesture.direction = (UISwipeGestureRecognizerDirectionRight);
+
+
+    [self.view addGestureRecognizer:swipeGesture];
+
+}
+                                              
+- (void) swipeForward:(UISwipeGestureRecognizer*)swipeGesture
+{
+    if (nextViewController != nil) {
+        [self.navigationController pushViewController:nextViewController animated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (UICollectionReusableView *)collectionView: (UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    footerPicker *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:
+                                         UICollectionElementKindSectionFooter withReuseIdentifier:@"footerPicker" forIndexPath:indexPath];
+    return footerView;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -85,17 +122,27 @@
     // conditionally format based on what stage we're in
     
     NSString * cellLabel;
-    
     id currentVal = [self.presetValues objectAtIndex:indexPath.row];
-    
+
     // since only the Brands have string literals, take stringValue for all other stages
-    
+//    if (indexPath.row == [presetValues count] - 1) {
+//        
+//        // lol fuck array indeces!!!!
+//        
+//        cell.pickerLabel.text = currentVal;
+//        // just set the text as normal and skip everything else if it's the "custom" cell
+//        return cell;
+//    }
     if (stage == myBeerBrand)
     {
         cellLabel = currentVal;
     }
     else
     {
+        if ([currentVal isKindOfClass:[NSConstantString class]]) {
+            cellLabel = currentVal;
+            // dumb override wtf ok
+        }
         cellLabel = [currentVal stringValue];
    
     }
@@ -134,37 +181,76 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch (stage) {
+    id currentVal = [self.presetValues objectAtIndex:indexPath.row];
+    
+    if (indexPath.row == [presetValues count])
+    {
+        // display keyboard, and UITextField
+        // modify appearance based on stage
+        
+    }
+
+    
+    switch (stage)
+    {
         case myBeerBrand:
-            [beerToBuild setBrand:[presetValues objectAtIndex:indexPath.row]];
+            [beerToBuild setBrand:currentVal];
             NSLog(@"Brand set to %@", beerToBuild.brand);
             break;
             
         case myBeerCanVolume:
-            beerToBuild.canVolume = [[presetValues objectAtIndex:indexPath.row] intValue];
+            beerToBuild.canVolume = [currentVal intValue];
             
             // canVolume and numberOfCans are ints, cast from obj to int so we dont end up creatin stuff w/pointers
             break;
             
         case myBeerAlcoholByVolume:
-            beerToBuild.alcoholByVolume = [presetValues objectAtIndex:indexPath.row];
+            beerToBuild.alcoholByVolume = currentVal;
             break;
             
         case myBeerNumberOfCans:
-            beerToBuild.numberOfCans = [[presetValues objectAtIndex:indexPath.row] intValue];
+            beerToBuild.numberOfCans = [currentVal intValue];
 
         default:
             break;
     }
     
     NSLog(@"Selection made: %@", [[presetValues objectAtIndex:indexPath.row] description]);
-    
+    NSLog(@"Beer is currently: %@", beerToBuild);
     // pass the beer up and along, advance to next view
     
-    [self.delegate updateBeer:beerToBuild];
-    [self.delegate advanceViewController];
+    // [self.delegate updateBeer:beerToBuild];
+    
+    if (stage != myBeerAlcoholByVolume) {
+        PickerViewController * nextVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PickerViewController"];
+        nextVC.stage = stage + 1;
+    
+        nextVC.beerToBuild = beerToBuild;
+        
+        self.nextViewController = nextVC;
+        
+        // keep track of this viewcontroller here so if they swipe back,
+        // they can swipe forward without having to reclick
+        
+        [self.navigationController pushViewController:nextVC animated:YES];
+    }
+    else {
+        PricePickerViewController * pricePicker = [[PricePickerViewController alloc] initWithNibName:@"PricePickerViewController" bundle:nil];
+        pricePicker.beerToBuild = beerToBuild;
+        pricePicker.delegate = self.navigationController.viewControllers[0];
+        [self.navigationController pushViewController:pricePicker animated:YES];
+
+    }
+
+    
+    // [self.delegate advanceViewController];
     
 }
+
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    
+//}
 
 
 @end

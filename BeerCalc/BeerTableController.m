@@ -16,6 +16,7 @@
 
 @implementation BeerTableController
 @synthesize beers;
+@synthesize sortPicker;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -122,12 +123,32 @@
     // this is where we should sort it!
     // TODO: sort array using a lambda
     
-    [beers sortUsingComparator:^NSComparisonResult(id a, id b) {
-        NSDecimalNumber * first = [(Beer*) a pricePerUnit];
-        NSDecimalNumber* second = [(Beer*) b pricePerUnit];
-        return [first compare:second];
-    }];
+    [self sortListAppropriately];
     
+    [self.tableView reloadData];
+    return;
+}
+
+- (void) sortListAppropriately
+{
+    if (self.sortPicker.selectedSegmentIndex == 0) {
+        // segment 0 is Price Per Unit
+        [self.beers sortUsingComparator:^NSComparisonResult(id a, id b) {
+            NSDecimalNumber * first = [(Beer*) a pricePerUnit];
+            NSDecimalNumber* second = [(Beer*) b pricePerUnit];
+            return [first compare:second];
+        }];
+
+    }
+    else
+    {
+        [self.beers sortUsingComparator:^NSComparisonResult(id a, id b) {
+            NSDecimalNumber * first = [(Beer*) a pricePerVolume];
+            NSDecimalNumber* second = [(Beer*) b pricePerVolume];
+            return [first compare:second];
+        }];
+
+    }
     [self.tableView reloadData];
     return;
 }
@@ -179,9 +200,10 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    // PickerViewController * destVC = [segue destinationViewController];
     
-    PickerPageViewController * destVC = [segue destinationViewController];
-    destVC.BeerDelegate = self;
+    //PickerPageViewController * destVC = [segue destinationViewController];
+    //destVC.BeerDelegate = self;
     // set the beerdelegate
     
     // TODO: maybe add a class check incase we add other segues and break shit

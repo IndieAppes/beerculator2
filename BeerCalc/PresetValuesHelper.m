@@ -28,7 +28,7 @@
 +(NSArray *) presetVolumesFactory
 {
     NSArray * array;
-    array = @[ @250, @440, @500, @568];
+    array = @[ @250, @284, @300, @330, @440, @500, @568];
     return array;
 
 }

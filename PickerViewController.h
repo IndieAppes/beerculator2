@@ -10,6 +10,7 @@
 #import "Beer.h"
 #import "PresetValuesHelper.h"
 
+
 @protocol PickerDelegate <NSObject>
 - (void)updateBeer:(Beer *)beer;
 - (Beer *) getBeerOnLoad;

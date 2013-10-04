@@ -15,15 +15,33 @@
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iLF-K1-mdd">
                             <size key="itemSize" width="155" height="55"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="50" height="55"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells/>
+                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="footerPicker" id="tPD-qy-SQO" customClass="footerPicker">
+                            <rect key="frame" x="0.0" y="64" width="320" height="55"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Other:" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Zn9-4s-HBc">
+                                    <rect key="frame" x="20" y="13" width="280" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                            </subviews>
+                            <connections>
+                                <outlet property="customPicker" destination="Zn9-4s-HBc" id="jax-Jr-n0F"/>
+                            </connections>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="954-NB-Akr" id="IjZ-FK-duz"/>
                             <outlet property="delegate" destination="954-NB-Akr" id="n0u-p0-vcy"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" id="dbh-gr-bZt">
+                        <barButtonItem key="backBarButtonItem" title=" " id="p8P-KI-eMn"/>
+                    </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iwu-CW-S6E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -60,22 +78,17 @@
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="5E6-FR-9BM">
                             <connections>
-                                <segue destination="rRU-gt-akZ" kind="modal" identifier="addBeer" id="xzq-bp-lJ2"/>
+                                <segue destination="954-NB-Akr" kind="push" id="El4-UV-mbO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="sortPicker" destination="xrC-Td-zDe" id="vHV-4j-e6C"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sof-nv-03O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-660" y="-229"/>
-        </scene>
-        <!--Picker Page View Controller-->
-        <scene sceneID="hQV-r2-lQG">
-            <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="rRU-gt-akZ" customClass="PickerPageViewController" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="g51-6c-2nT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-213" y="83"/>
+            <point key="canvasLocation" x="-758" y="-209"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="prm-tL-xYn">
