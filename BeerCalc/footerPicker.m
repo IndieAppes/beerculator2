@@ -26,7 +26,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    CGRect insetRect = CGRectInset(rect, 0.5, 0.5);
+    CGRect insetRect = CGRectInset(rect, 20.5, 0.5);
     UIBezierPath * path = [UIBezierPath bezierPathWithRoundedRect:insetRect cornerRadius:6];
     
     [path setLineWidth:0.5];

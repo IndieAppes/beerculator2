@@ -24,6 +24,7 @@
 @synthesize beerToBuild;
 @synthesize stage;
 @synthesize nextViewController;
+@synthesize footer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil // withMode:(beerStage)mode withBeer:(Beer *)beerBeingBuilt
 {
@@ -40,7 +41,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
+    [self registerForKeyboardNotifications];
     UINib * cellNib = [UINib nibWithNibName:@"PickerCell" bundle:nil];
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"pickerCell"];
     
@@ -109,6 +110,7 @@
 - (UICollectionReusableView *)collectionView: (UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     footerPicker *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:
                                          UICollectionElementKindSectionFooter withReuseIdentifier:@"footerPicker" forIndexPath:indexPath];
+    self.footer = footerView;
     return footerView;
 }
 
@@ -263,5 +265,33 @@
     return UIEdgeInsetsMake(20, 20, 20, 20);
 }
 
+#pragma mark - Keyboad Notifications
+
+
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+    [self.collectionView scrollRectToVisible:footer.frame animated:YES];
+    return;
+}
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+    [self.collectionView scrollRectToVisible:footer.frame animated:YES];
+    return;
+}
+
+- (void)registerForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+    
+}
 
 @end

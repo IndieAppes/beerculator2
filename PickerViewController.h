@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Beer.h"
 #import "PresetValuesHelper.h"
+#import "footerPicker.h"
 
 
 @interface PickerViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout, UICollectionViewDelegate>
@@ -17,5 +18,7 @@
 @property (nonatomic, strong) Beer * beerToBuild;
 
 @property (nonatomic, assign) beerStage stage;
+
+@property (nonatomic, weak) IBOutlet footerPicker* footer;
 
 @end

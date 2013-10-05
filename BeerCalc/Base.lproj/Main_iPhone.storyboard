@@ -24,15 +24,12 @@
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Other:" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Mw-bP-20Q">
-                                    <rect key="frame" x="20" y="13" width="280" height="30"/>
+                                    <rect key="frame" x="30" y="13" width="280" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                             </subviews>
-                            <connections>
-                                <outlet property="customPicker" destination="3Mw-bP-20Q" id="se0-8u-u6C"/>
-                            </connections>
                         </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="954-NB-Akr" id="IjZ-FK-duz"/>
