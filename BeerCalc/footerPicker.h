@@ -9,9 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "PresetValuesHelper.h"
 
-@interface footerPicker : UICollectionReusableView
+@protocol CustomPickerDelegate <NSObject>
+- (void) updateBeerFromCustomPickerText:(NSString *)string;
+@end
+
+
+@interface footerPicker : UICollectionReusableView <UITextFieldDelegate>
 
 @property (nonatomic, strong) IBOutlet UITextField* customPicker;
 @property (nonatomic, assign) beerStage stage;
+@property (nonatomic, strong) UIButton* overlayButton;
+- (void)setSelectedRange:(NSRange)range;
+@property (assign) id <CustomPickerDelegate> pickerDelegate;
 
 @end

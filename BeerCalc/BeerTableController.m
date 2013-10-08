@@ -12,11 +12,13 @@
 
 @interface BeerTableController ()
 
+@property Beer * initialExampleBeer;
 @end
 
 @implementation BeerTableController
 @synthesize beers;
 @synthesize sortPicker;
+@synthesize initialExampleBeer;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -43,7 +45,7 @@
     
     // set up and initialize our example Beer
     
-    Beer * initialExampleBeer = [Beer alloc];
+    initialExampleBeer = [Beer alloc];
     initialExampleBeer.brand = @"Example: Fosters";
     initialExampleBeer.canVolume = 440;
     initialExampleBeer.alcoholByVolume = [NSDecimalNumber decimalNumberWithString:@"4.0"];
@@ -120,8 +122,10 @@
 - (void) addBeerToList:(Beer *)beer
 {
     [self.beers addObject:beer];
-    // this is where we should sort it!
-    // TODO: sort array using a lambda
+    if ([self.beers containsObject:initialExampleBeer]) {
+        [self.beers removeObject:initialExampleBeer];
+    }
+    // delete the example beer to keep it clean
     
     [self sortListAppropriately];
     
@@ -153,28 +157,31 @@
     return;
 }
 
-/*
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
+
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        [self.beers removeObjectAtIndex:indexPath.row];
+
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    }
+//    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+//    }
+    return;
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.

@@ -10,11 +10,16 @@
 
 @implementation footerPicker
 
+@synthesize customPicker;
+@synthesize stage;
+@synthesize overlayButton;
+@synthesize pickerDelegate;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        customPicker.delegate = self;
     }
     return self;
 }
@@ -39,5 +44,43 @@
     return;
 }
 
+- (void)setSelectedRange:(NSRange)range
+{
+    UITextPosition *beginning = self.customPicker.beginningOfDocument;
+    UITextPosition *start = [self.customPicker positionFromPosition:beginning offset:range.location];
+    UITextPosition *end = [self.customPicker positionFromPosition:start offset:range.length];
+    UITextRange *textRange = [self.customPicker textRangeFromPosition:start toPosition:end];
+    [self.customPicker setSelectedTextRange:textRange];
+    return;
+}
+
+
+- (UIButton *)createOverlayButton {
+    if (self.overlayButton == nil) {
+        UIButton* button = [UIButton buttonWithType:UIButtonTypeSystem];
+        button.frame = CGRectMake(0, 0, 61, 30);
+        [button setTitle:@"Done" forState:UIControlStateNormal];
+//            [overlayButton setImage:overlayImage forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(customPickerDoneTapped)
+                    forControlEvents:UIControlEventTouchUpInside];
+        [button.titleLabel setFont:[UIFont boldSystemFontOfSize:17]];
+        return button;
+    }
+    return self.overlayButton;
+}
+
+-(void)customPickerDoneTapped
+{
+    NSLog(@"Current text: %@", customPicker.text);
+    [self.pickerDelegate updateBeerFromCustomPickerText:customPicker.text];
+    return;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    self.overlayButton = [self createOverlayButton];
+    textField.rightView = self.overlayButton;
+    textField.rightViewMode = UITextFieldViewModeAlways;
+}
 
 @end

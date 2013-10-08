@@ -12,7 +12,7 @@
 #import "footerPicker.h"
 
 
-@interface PickerViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout, UICollectionViewDelegate>
+@interface PickerViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, CustomPickerDelegate>
 
 @property (nonatomic, strong) NSMutableArray * presetValues;
 @property (nonatomic, strong) Beer * beerToBuild;
