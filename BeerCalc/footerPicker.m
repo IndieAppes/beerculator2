@@ -83,4 +83,11 @@
     textField.rightViewMode = UITextFieldViewModeAlways;
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self customPickerDoneTapped];
+    // wire up our done button
+    return YES;
+}
+
 @end

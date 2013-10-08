@@ -14,5 +14,6 @@
 
 @property (nonatomic, retain) NSMutableArray * beers;
 @property (nonatomic, strong) IBOutlet UISegmentedControl * sortPicker;
+- (IBAction) sortListAppropriately;
 
 @end

@@ -98,9 +98,15 @@
     NSNumberFormatter * formatter = [[NSNumberFormatter alloc] init];
     formatter.numberStyle = NSNumberFormatterCurrencyStyle;
     formatter.locale = [NSLocale currentLocale];
-    
-    cell.priceLabel.text = [formatter stringFromNumber:beer.pricePerUnit];
-    
+    if (self.sortPicker.selectedSegmentIndex == 0)
+    {
+        cell.priceLabel.text = [formatter stringFromNumber:beer.pricePerUnit];
+    }
+    else
+    {
+        cell.priceLabel.text = [formatter stringFromNumber:beer.pricePerVolume];
+    }
+
     NSMutableString * descriptionString = [[NSMutableString alloc] init];
     
     // build string of form "4 x 440ml @ 4.0%, £4.00"

@@ -92,11 +92,6 @@
 
 
     [self.view addGestureRecognizer:swipeGesture];
-    
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    flowLayout.
-    
-    self.collectionView.layout = flowLayout;
 
 }
 

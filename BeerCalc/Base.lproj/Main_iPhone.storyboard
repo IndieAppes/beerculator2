@@ -27,7 +27,7 @@
                                     <rect key="frame" x="35" y="10" width="259" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
                                     <connections>
                                         <outlet property="delegate" destination="Evr-zd-o8i" id="bEh-b7-pNe"/>
                                     </connections>
@@ -76,8 +76,11 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Price per unit"/>
-                                <segment title="Price per ml"/>
+                                <segment title="Price per litre"/>
                             </segments>
+                            <connections>
+                                <action selector="sortListAppropriately" destination="VIf-4t-mHU" eventType="valueChanged" id="NBd-iM-h2o"/>
+                            </connections>
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="5E6-FR-9BM">
                             <connections>
