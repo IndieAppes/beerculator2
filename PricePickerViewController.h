@@ -22,6 +22,7 @@
 @end
 
 @interface PricePickerViewController : UIViewController <UITextFieldDelegate, UICollectionViewDelegate>
+@property (strong, nonatomic) IBOutlet UIView *borderView;
 
 @property (strong, nonatomic) IBOutlet UITextField* textField;
 @property (strong, nonatomic) IBOutlet UILabel* currencyLabel;

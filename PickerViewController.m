@@ -376,8 +376,6 @@
     self.collectionView.scrollIndicatorInsets = contentInsets;
     [self.collectionView scrollRectToVisible:footer.frame animated:YES];
     
-    // TODO: adjust the scroll for the +10 inset
-    
     // modify keyboard position based on stage
     // draw a done button over keyboard
     

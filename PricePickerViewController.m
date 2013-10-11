@@ -10,6 +10,8 @@
 
 
 #import "PricePickerViewController.h"
+#import <QuartzCore/QuartzCore.h>
+
 
 #define MAX_LENGTH 8
 
@@ -28,6 +30,8 @@
 @synthesize textField = _textField, maximumFractionDigits = _maximumFractionDigits, decimalSeparator = _decimalSeparator;
 @synthesize beerToBuild;
 @synthesize scrollView;
+
+@synthesize borderView;
 
 - (id)initWithNibName:(NSString*)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -71,16 +75,14 @@
     // Default value
     // self.beerToBuild = [self.delegate getBeerOnLoad];
     // get the beer
-    
-    
-    
+    self.borderView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.title = @"Price";
     // subtitle? extra view??!
     
-    CGSize frame = self.view.frame.size;
-    frame.height += 300;
-    // make it large enough to be off screen
-    self.scrollView.contentSize = frame;
+//    UIEdgeInsets contentInsets = UIEdgeInsetsMake(self.navigationController.navigationBar.frame.size.height + 20, 0.0, 236, 0.0);
+//    self.scrollView.contentInset = contentInsets;
+//    self.scrollView.scrollIndicatorInsets = contentInsets;
+
     
     self.textField.text = @"0.00";
     // Pop up keyboard
@@ -114,12 +116,14 @@
 
     // If active text field is hidden by keyboard, scroll it so it's visible
     // Your app might not need or want this behavior.
-    CGRect aRect = self.view.frame;
-    aRect.size.height -= kbSize.height;
-    scrollView.frame = aRect;
     
-    //    [self.scrollView scrollRectToVisible:self.textField.frame animated:YES];
-    
+
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(self.navigationController.navigationBar.frame.size.height + 20, 0.0, kbSize.height + 20, 0.0);
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
+    self.scrollView.contentOffset = CGPointMake(0, 0);
+    [self.scrollView scrollRectToVisible:self.borderView.frame animated:YES];
+    return;
 }
 
 #pragma mark - UITextFieldDelegate methods
