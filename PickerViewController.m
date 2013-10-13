@@ -9,7 +9,6 @@
 #import "PickerViewController.h"
 #import "PresetValuesHelper.h"
 #import "PickerCell.h"
-#import "PricePickerViewController.h"
 #import "footerPicker.h"
 
 @interface PickerViewController ()
@@ -25,6 +24,8 @@
 @synthesize stage;
 @synthesize nextViewController;
 @synthesize footer;
+@synthesize beerTableDelegate;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil // withMode:(beerStage)mode withBeer:(Beer *)beerBeingBuilt
 {
@@ -71,7 +72,8 @@
             break;
         case myBeerPrice:
             // shouldn't get here using this view because there's no presets for this, so fuck off i guess
-            NSLog(@"something broke. got to pickerCollView with price selection option. aaaa");
+            //NSLog(@"something broke. got to pickerCollView with price selection option. aaaa");
+            self.title = @"Price";
             
         default:
             break;
@@ -94,23 +96,6 @@
     [self.view addGestureRecognizer:swipeGesture];
 
 }
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    CGPoint desiredOffset = CGPointMake(0, -64);
-    if (!CGPointEqualToPoint(self.collectionView.contentOffset, desiredOffset))
-    {
-        NSLog(@"%@", NSStringFromCGPoint(self.collectionView.contentOffset));//= CGPointMake(0, 0);
-        self.collectionView.contentOffset = desiredOffset;
-    }
-    return;
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    self.collectionView.contentOffset = CGPointMake(0, -64);
-}
-
                                               
 - (void) swipeForward:(UISwipeGestureRecognizer*)swipeGesture
 {
@@ -129,6 +114,9 @@
 {
     footerPicker *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:
                                          UICollectionElementKindSectionFooter withReuseIdentifier:@"footerPicker" forIndexPath:indexPath];
+    NSLocale *theLocale = [NSLocale currentLocale];
+    NSString *symbol = [theLocale objectForKey:NSLocaleCurrencySymbol];
+    NSString* baseText = @"Other:  ";
     self.footer = footerView;
     self.footer.pickerDelegate = self;
     footer.stage = stage;
@@ -154,7 +142,8 @@
             [self.footer setSelectedRange:NSMakeRange(self.footer.customPicker.text.length - 2, 0)];
             break;
         case myBeerPrice:
-            NSLog(@"things are broken! shouldn't get here");
+            self.footer.customPicker.text = [baseText stringByAppendingString:symbol];
+            self.footer.customPicker.keyboardType = UIKeyboardTypeDecimalPad;
             break;
     }
     return footerView;
@@ -220,6 +209,9 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    if (stage == myBeerPrice) {
+        return 0;
+    }
     return [presetValues count];
 }
 
@@ -228,11 +220,12 @@
 {
     // [self.delegate updateBeer:beerToBuild];
     
-    if (stage != myBeerAlcoholByVolume) {
+    if (stage != myBeerPrice) {
         PickerViewController * nextVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PickerViewController"];
         nextVC.stage = stage + 1;
         
         nextVC.beerToBuild = beerToBuild;
+        nextVC.beerTableDelegate = self.beerTableDelegate;
         
         self.nextViewController = nextVC;
         
@@ -240,13 +233,6 @@
         // they can swipe forward without having to reclick
         
         [self.navigationController pushViewController:nextVC animated:YES];
-    }
-    else {
-        PricePickerViewController * pricePicker = [[PricePickerViewController alloc] initWithNibName:@"PricePickerViewController" bundle:nil];
-        pricePicker.beerToBuild = beerToBuild;
-        pricePicker.delegate = self.navigationController.viewControllers[0];
-        [self.navigationController pushViewController:pricePicker animated:YES];
-        
     }
 }
 
@@ -296,6 +282,9 @@
 
 - (void) updateBeerFromCustomPickerText:(NSString *)string
 {
+    NSLocale *theLocale = [NSLocale currentLocale];
+    NSString *symbol = [theLocale objectForKey:NSLocaleCurrencySymbol];
+
     switch (self.stage) {
         case myBeerBrand:
             self.beerToBuild.brand = string;
@@ -331,15 +320,24 @@
             string = [string stringByReplacingOccurrencesOfString:@" %" withString:@""];
             self.beerToBuild.alcoholByVolume = [NSDecimalNumber decimalNumberWithString:string];
             
-            if (![self.beerToBuild.alcoholByVolume isEqualToNumber:@0]) {
+            if (![self.beerToBuild.alcoholByVolume isEqualToNumber:@0])
+            {
                 [self advanceBeerStage];
             }
+            break;
             
-            break;
         case myBeerPrice:
-            // do nothing shouldn't get here
-            //... unless we reimplement the one back. anyway
+            string = [string stringByReplacingOccurrencesOfString:@"Other: " withString:@""];
+            string = [string stringByReplacingOccurrencesOfString:symbol withString:@""];
+
+            self.beerToBuild.price = [NSDecimalNumber decimalNumberWithString:string locale:[NSLocale currentLocale]];
+            NSLog(@"Price: %@, = 0? %hhd",[beerToBuild.price description], [self.beerToBuild.price isEqualToNumber:[NSNumber numberWithInt:0]]);
+            if (![self.beerToBuild.price isEqualToNumber:0])
+            {
+                [self.beerTableDelegate addBeerToList:beerToBuild];
+                [self.navigationController popToRootViewControllerAnimated:YES];
             break;
+            }
             
         default:
             break;
@@ -408,9 +406,12 @@
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification
 {
     UIEdgeInsets contentInsets = UIEdgeInsetsMake(self.navigationController.navigationBar.frame.size.height + 20, 0, 0, 0);
+//    self.navigationController.navigationBar.frame.size.height
     self.collectionView.contentInset = contentInsets;
     self.collectionView.scrollIndicatorInsets = contentInsets;
-    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
+    if (stage != myBeerPrice) {
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
+    }
     
     // hide done button on keyboard if it's left blank
     NSString* string = self.footer.customPicker.text;

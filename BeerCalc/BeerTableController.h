@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PricePickerViewController.h"
+#import "PickerViewController.h"
 
-
-@interface BeerTableController : UITableViewController
+@interface BeerTableController : UITableViewController <BeerUpdateDelegate>
 
 @property (nonatomic, retain) NSMutableArray * beers;
 @property (nonatomic, strong) IBOutlet UISegmentedControl * sortPicker;

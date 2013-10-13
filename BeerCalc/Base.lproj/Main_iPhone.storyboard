@@ -26,7 +26,7 @@
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Other:" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hYO-QW-Vft">
                                     <rect key="frame" x="35" y="10" width="259" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="22"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
                                     <connections>
                                         <outlet property="delegate" destination="Evr-zd-o8i" id="bEh-b7-pNe"/>
@@ -101,7 +101,11 @@
             <objects>
                 <navigationController definesPresentationContext="YES" id="Leb-8R-wl4" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="QLK-uL-fNN">
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="19"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="VIf-4t-mHU" kind="relationship" relationship="rootViewController" id="wZJ-V1-P0L"/>
@@ -112,6 +116,7 @@
             <point key="canvasLocation" x="-1194" y="-229"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

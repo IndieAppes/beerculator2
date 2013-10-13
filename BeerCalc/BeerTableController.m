@@ -213,7 +213,8 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    // PickerViewController * destVC = [segue destinationViewController];
+    PickerViewController * destVC = [segue destinationViewController];
+    destVC.beerTableDelegate = self;
     
     //PickerPageViewController * destVC = [segue destinationViewController];
     //destVC.BeerDelegate = self;

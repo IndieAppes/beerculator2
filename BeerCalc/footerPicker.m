@@ -39,7 +39,7 @@
     [[UIColor whiteColor] setFill];
     [path fill];
     
-    [[UIColor darkGrayColor] setStroke];
+    [[UIColor orangeColor] setStroke];
     [path stroke];
     return;
 }

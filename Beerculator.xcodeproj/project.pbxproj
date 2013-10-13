@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7718289017F0A0C900C4F05B /* PricePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7718288E17F0A0C900C4F05B /* PricePickerViewController.m */; };
-		7718289117F0A0C900C4F05B /* PricePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7718288F17F0A0C900C4F05B /* PricePickerViewController.xib */; };
 		7721294417E4890E008F0622 /* BeerTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7721294317E4890E008F0622 /* BeerTableController.m */; };
 		77A3E1B917E5C676009620EF /* BeerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A3E1B817E5C676009620EF /* BeerCell.m */; };
 		77A3E1BB17E5CDD4009620EF /* BeerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77A3E1BA17E5CDD4009620EF /* BeerCell.xib */; };
@@ -48,9 +46,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7718288D17F0A0C900C4F05B /* PricePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PricePickerViewController.h; path = ../PricePickerViewController.h; sourceTree = "<group>"; };
-		7718288E17F0A0C900C4F05B /* PricePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PricePickerViewController.m; path = ../PricePickerViewController.m; sourceTree = "<group>"; };
-		7718288F17F0A0C900C4F05B /* PricePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PricePickerViewController.xib; path = ../PricePickerViewController.xib; sourceTree = "<group>"; };
 		7721294217E4890E008F0622 /* BeerTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeerTableController.h; sourceTree = "<group>"; };
 		7721294317E4890E008F0622 /* BeerTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeerTableController.m; sourceTree = "<group>"; };
 		77A3E1B717E5C676009620EF /* BeerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeerCell.h; sourceTree = "<group>"; };
@@ -153,9 +148,6 @@
 		77A58B6617E47F01001FE7B2 /* BeerCalc */ = {
 			isa = PBXGroup;
 			children = (
-				7718288D17F0A0C900C4F05B /* PricePickerViewController.h */,
-				7718288E17F0A0C900C4F05B /* PricePickerViewController.m */,
-				7718288F17F0A0C900C4F05B /* PricePickerViewController.xib */,
 				77A58B6F17E47F01001FE7B2 /* AppDelegate.h */,
 				77A58B7017E47F01001FE7B2 /* AppDelegate.m */,
 				77A3E1BC17E5CF1C009620EF /* Beer.h */,
@@ -290,7 +282,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7718289117F0A0C900C4F05B /* PricePickerViewController.xib in Resources */,
 				77A58B7717E47F01001FE7B2 /* Main_iPad.storyboard in Resources */,
 				77A3E1BB17E5CDD4009620EF /* BeerCell.xib in Resources */,
 				77A58B7C17E47F01001FE7B2 /* Images.xcassets in Resources */,
@@ -318,7 +309,6 @@
 				77A3E1BE17E5CF1C009620EF /* Beer.m in Sources */,
 				77A58B7117E47F01001FE7B2 /* AppDelegate.m in Sources */,
 				77A58B6D17E47F01001FE7B2 /* main.m in Sources */,
-				7718289017F0A0C900C4F05B /* PricePickerViewController.m in Sources */,
 				7721294417E4890E008F0622 /* BeerTableController.m in Sources */,
 				77A3E1B917E5C676009620EF /* BeerCell.m in Sources */,
 				77A3E1CC17E71E9C009620EF /* PickerCell.m in Sources */,

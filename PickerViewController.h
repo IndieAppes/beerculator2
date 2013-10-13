@@ -11,6 +11,10 @@
 #import "PresetValuesHelper.h"
 #import "footerPicker.h"
 
+@protocol BeerUpdateDelegate <NSObject>
+- (void) addBeerToList:(Beer *)beer;
+@end
+
 
 @interface PickerViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, CustomPickerDelegate>
 
@@ -21,4 +25,5 @@
 
 @property (nonatomic, weak) IBOutlet footerPicker* footer;
 
+@property (assign) id <BeerUpdateDelegate> beerTableDelegate;
 @end

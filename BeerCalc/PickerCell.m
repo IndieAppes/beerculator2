@@ -31,12 +31,26 @@
     
     [path setLineWidth:0.5];
     
-    [[UIColor whiteColor] setFill];
+    [[UIColor clearColor] setFill];
     [path fill];
     
-    [[UIColor darkGrayColor] setStroke];
+    [[UIColor lightGrayColor] setStroke];
     [path stroke];
 }
 
+- (void)setHighlighted:(BOOL)highlighted
+{
+    if (highlighted == TRUE)
+    {
+        self.layer.borderColor = [UIColor orangeColor].CGColor;
+        self.layer.borderWidth = 2.0f;
+        
+    }
+    else
+    {
+        self.layer.borderWidth = 0.0f;
+    }
+    return;
+}
 
 @end
