@@ -37,6 +37,15 @@
                                                bundle:[NSBundle mainBundle]]
          forCellReuseIdentifier:@"beerCell"];
     
+    BOOL didRunBefore = [[NSUserDefaults standardUserDefaults] boolForKey:@"didRunBefore"];
+    
+    if (!didRunBefore) {
+        // show alert;
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Welcome to Beerculator" message:@"Please enjoy alcohol responsibly. Visit drinkaware.co.uk or your local equivalent for more information." delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"didRunBefore"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
     
     // [self.tableView setContentInset:UIEdgeInsetsMake(20.0f, self.tableView.contentInset.left, self.tableView.contentInset.bottom, self.tableView.contentInset.right)];
     // adjust insets for iOS 7

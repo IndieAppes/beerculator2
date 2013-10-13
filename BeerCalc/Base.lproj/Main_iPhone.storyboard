@@ -76,7 +76,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Price per unit"/>
-                                <segment title="Price per litre"/>
+                                <segment title="Price per pint"/>
                             </segments>
                             <connections>
                                 <action selector="sortListAppropriately" destination="VIf-4t-mHU" eventType="valueChanged" id="NBd-iM-h2o"/>

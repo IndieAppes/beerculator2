@@ -41,7 +41,7 @@
 
 - (NSDecimalNumber* ) pricePerVolume
 {
-    NSNumber * totalVolume = [NSNumber numberWithFloat:(canVolume * numberOfCans)/1000.0];
+    NSNumber * totalVolume = [NSNumber numberWithFloat:(canVolume * numberOfCans)/(568.0)];
     NSDecimalNumber * totalDecimalVolume = [NSDecimalNumber decimalNumberWithDecimal:[(totalVolume) decimalValue]];
     
     NSDecimalNumber * pricePerMl = price;

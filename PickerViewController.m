@@ -71,9 +71,8 @@
             self.title = @"Percentage alcohol by volume";
             break;
         case myBeerPrice:
-            // shouldn't get here using this view because there's no presets for this, so fuck off i guess
-            //NSLog(@"something broke. got to pickerCollView with price selection option. aaaa");
             self.title = @"Price";
+            break;
             
         default:
             break;
@@ -144,6 +143,7 @@
         case myBeerPrice:
             self.footer.customPicker.text = [baseText stringByAppendingString:symbol];
             self.footer.customPicker.keyboardType = UIKeyboardTypeDecimalPad;
+            [self.footer.customPicker becomeFirstResponder];
             break;
     }
     return footerView;
