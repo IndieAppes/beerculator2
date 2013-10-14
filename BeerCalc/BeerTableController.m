@@ -41,7 +41,7 @@
     
     if (!didRunBefore) {
         // show alert;
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Welcome to Beerculator" message:@"Please enjoy alcohol responsibly. Visit drinkaware.co.uk or your local equivalent for more information." delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Welcome to Beerculator." message:@"Please enjoy alcohol responsibly. Visit drinkaware.co.uk or your local equivalent for more information." delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"didRunBefore"];
         [[NSUserDefaults standardUserDefaults] synchronize];
