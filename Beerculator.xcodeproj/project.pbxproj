@@ -15,7 +15,6 @@
 		77A3E1C717E70913009620EF /* PresetValuesHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A3E1C617E70913009620EF /* PresetValuesHelper.m */; };
 		77A3E1C917E71870009620EF /* PickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77A3E1C817E71870009620EF /* PickerCell.xib */; };
 		77A3E1CC17E71E9C009620EF /* PickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A3E1CB17E71E9C009620EF /* PickerCell.m */; };
-		77A3F87717FDDB5800D3EB7B /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A3F87617FDDB5800D3EB7B /* Reveal.framework */; };
 		77A3F87917FDDC4500D3EB7B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A3F87817FDDC4500D3EB7B /* CFNetwork.framework */; };
 		77A3F87B17FDDC4F00D3EB7B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A3F87A17FDDC4F00D3EB7B /* QuartzCore.framework */; };
 		77A3F87E17FF1DD400D3EB7B /* footerPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A3F87D17FF1DD400D3EB7B /* footerPicker.m */; };
@@ -95,7 +94,6 @@
 				77A58B6317E47F01001FE7B2 /* CoreGraphics.framework in Frameworks */,
 				77A58B6517E47F01001FE7B2 /* UIKit.framework in Frameworks */,
 				77A58B6117E47F01001FE7B2 /* Foundation.framework in Frameworks */,
-				77A3F87717FDDB5800D3EB7B /* Reveal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,7 +445,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Josh Palmer (7M8BR7R488)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/joshpalmer/Documents/Coding/BeerCalc,
@@ -457,6 +455,7 @@
 				INFOPLIST_FILE = "BeerCalc/Beerculator-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Beerculator;
+				PROVISIONING_PROFILE = "FC9ED1D3-A3A9-409A-A2FE-DDEBBD756F3E";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -467,7 +466,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Josh Palmer (7M8BR7R488)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/joshpalmer/Documents/Coding/BeerCalc,
@@ -477,6 +476,7 @@
 				INFOPLIST_FILE = "BeerCalc/Beerculator-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Beerculator;
+				PROVISIONING_PROFILE = "FC9ED1D3-A3A9-409A-A2FE-DDEBBD756F3E";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
