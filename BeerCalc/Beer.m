@@ -50,4 +50,24 @@
     return pricePerMl;
 }
 
+- (NSString *) getSubtitleStringDescrtiption
+{
+    NSNumberFormatter * formatter = [[NSNumberFormatter alloc] init];
+    formatter.numberStyle = NSNumberFormatterCurrencyStyle;
+    formatter.locale = [NSLocale currentLocale];
+    
+    NSMutableString * descriptionString = [[NSMutableString alloc] init];
+    
+    // build string of form "4 x 440ml @ 4.0%, £4.00"
+    
+    [descriptionString appendString:[@(self.numberOfCans) stringValue]];
+    [descriptionString appendString:@" x "];
+    [descriptionString appendString:[@(self.canVolume) stringValue]];
+    [descriptionString appendString:@"ml @ "];
+    [descriptionString appendString:self.alcoholByVolume.stringValue];
+    [descriptionString appendString:@"%, "];
+    [descriptionString appendString:[formatter stringFromNumber:self.price]];
+    return descriptionString;
+}
+
 @end

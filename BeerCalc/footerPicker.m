@@ -39,7 +39,7 @@
     [[UIColor whiteColor] setFill];
     [path fill];
     
-    [[UIColor orangeColor] setStroke];
+    [self.tintColor setStroke];
     [path stroke];
     return;
 }

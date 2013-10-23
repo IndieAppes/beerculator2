@@ -18,5 +18,6 @@
 
 - (NSDecimalNumber *) pricePerVolume;
 - (NSDecimalNumber *) pricePerUnit;
+- (NSString *) getSubtitleStringDescrtiption;
 
 @end

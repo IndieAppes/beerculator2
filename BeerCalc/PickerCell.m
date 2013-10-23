@@ -36,13 +36,15 @@
     
     [[UIColor lightGrayColor] setStroke];
     [path stroke];
+//    NSLog(@"tint: %@", [self.tintColor description]);
+    self.pickerLabel.textColor = self.tintColor;
 }
 
 - (void)setHighlighted:(BOOL)highlighted
 {
     if (highlighted == TRUE)
     {
-        self.layer.borderColor = [UIColor orangeColor].CGColor;
+        self.layer.borderColor = self.tintColor.CGColor;
         self.layer.borderWidth = 2.0f;
         
     }
