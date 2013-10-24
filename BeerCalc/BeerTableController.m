@@ -204,7 +204,18 @@
     // im the 8 lines instead of using a fucking stringBuilder class or operators on strings lol
     
     cell.descriptionLabel.text = [beer getSubtitleStringDescription];
+    
+    if (indexPath.row == 0 && beers.count > 1) {
+        //rgba(0, 1, 0.042, 0.27)
+        //rgba(0.27, 0.82, 1, 0.27)
+        cell.backgroundColor = [UIColor colorWithRed:1.f green:0.5f blue:0.f alpha:1.f];
+        cell.nameLabel.textColor = [UIColor whiteColor];
+        cell.descriptionLabel.textColor = [UIColor whiteColor];
+        cell.priceLabel.textColor = [UIColor whiteColor];
+        
+    }
     return cell;
+
 }
 
 - (void) addBeerToList:(Beer *)beer
