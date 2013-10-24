@@ -326,13 +326,15 @@
     destVC.beerTableDelegate = self;
     destVC.beverage = self.beverage;
 //    destVC.beerToBuild = [Beer ini
+    // ADJUST TINTS
+    
     UIColor* tintColor;
     switch (self.beverage) {
         case myDrinkBeer:
             tintColor = [UIColor orangeColor];
             break;
         case myDrinkCider:
-            tintColor = [UIColor greenColor];
+            tintColor = [UIColor colorWithHue:0.33 saturation:1.00 brightness:0.8 alpha:1];
             break;
         case myDrinkWine:
             tintColor = [UIColor redColor];

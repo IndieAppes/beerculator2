@@ -26,7 +26,7 @@
 #define kArrowCurvature 6.f
 
 //Minimum distance from the side of the arrow to the beginning of curvature for the box
-#define kArrowHorizontalPadding 5.f
+#define kArrowHorizontalPadding 0.f
 
 //Alpha value for the shadow behind the PopoverView
 #define kShadowAlpha 0.4f
