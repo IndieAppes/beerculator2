@@ -13,8 +13,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="155" height="55"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="myVal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rxU-TS-uJC">
-                        <rect key="frame" x="23" y="9" width="108" height="38"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sauvignon BLanc" textAlignment="center" lineBreakMode="tailTruncation" minimumScaleFactor="0.5" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rxU-TS-uJC">
+                        <rect key="frame" x="5" y="8" width="145" height="39"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="22"/>
                         <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -25,8 +25,10 @@
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="centerY" secondItem="rxU-TS-uJC" secondAttribute="centerY" id="ZoD-fT-sWF"/>
-                <constraint firstAttribute="centerX" secondItem="rxU-TS-uJC" secondAttribute="centerX" constant="0.5" id="qo4-Ut-vV6"/>
+                <constraint firstItem="rxU-TS-uJC" firstAttribute="centerX" secondItem="TwD-It-LVE" secondAttribute="centerX" id="EQQ-5n-Clo"/>
+                <constraint firstItem="rxU-TS-uJC" firstAttribute="leading" secondItem="TwD-It-LVE" secondAttribute="leading" constant="5" id="hsU-se-w72"/>
+                <constraint firstItem="rxU-TS-uJC" firstAttribute="top" secondItem="TwD-It-LVE" secondAttribute="top" constant="8" id="qZv-0B-c2M"/>
+                <constraint firstAttribute="bottom" secondItem="rxU-TS-uJC" secondAttribute="bottom" constant="8" id="wyl-LN-H7c"/>
             </constraints>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">

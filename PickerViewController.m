@@ -212,6 +212,8 @@
             break;
     }
     
+    [cell.pickerLabel setNeedsUpdateConstraints];
+    
     return cell;
 }
 
