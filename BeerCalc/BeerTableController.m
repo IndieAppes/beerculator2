@@ -203,7 +203,7 @@
     
     // im the 8 lines instead of using a fucking stringBuilder class or operators on strings lol
     
-    cell.descriptionLabel.text = [beer getSubtitleStringDescrtiption];
+    cell.descriptionLabel.text = [beer getSubtitleStringDescription];
     return cell;
 }
 
@@ -216,22 +216,31 @@
     
     // Google analytics
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Beer added"     // Event category (required)
-                                                          action:beer.brand  // Event action (required)
-                                                           label:beer.getSubtitleStringDescrtiption          // Event label
+    
+    NSString * category = [PresetValuesHelper beverageTypeToString:beer.beverage];
+    category = [category stringByAppendingString:@" added"];
+    
+    NSString* action;
+    NSNumberFormatter * formatter = [[NSNumberFormatter alloc] init];
+    formatter.numberStyle = NSNumberFormatterCurrencyStyle;
+    formatter.locale = [NSLocale currentLocale];
+    if (self.sortPicker.selectedSegmentIndex == 0)
+    {
+        action = @"Price per unit";
+        action = [action stringByAppendingString:[formatter stringFromNumber:beer.pricePerUnit]];
+    }
+    else
+    {
+        action = @"Price per pint";
+        action = [action stringByAppendingString:[formatter stringFromNumber:beer.pricePerVolume]];
+    }
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:category     // Event category (required)
+                                                          action:action  // Event action (required)
+                                                           label:beer.getSubtitleStringDescription          // Event label
                                                            value:nil] build]];    // Event value
 
     
-//    NSError *error;
-//	if (![[GAITracker tracker] trackEvent:@"button_click"
-//                                         action:@"save_the_world"
-//                                          label:@"my_label"
-//                                          value:-1
-//                                      withError:&amp;error]) {
-//		// Handle error here
-//	}
-    
+    NSLog(category, [beer.pricePerUnit description], beer.getSubtitleStringDescription);
     // delete the example beer to keep it clean
     [self sortListAppropriately];
     
@@ -316,6 +325,7 @@
     PickerViewController * destVC = [segue destinationViewController];
     destVC.beerTableDelegate = self;
     destVC.beverage = self.beverage;
+//    destVC.beerToBuild = [Beer ini
     UIColor* tintColor;
     switch (self.beverage) {
         case myDrinkBeer:
@@ -328,7 +338,7 @@
             tintColor = [UIColor redColor];
             break;
         case myDrinkSpirits:
-//            tintColor = [UIColor ];
+            tintColor = [UIColor blueColor];
             break;
             
         default:

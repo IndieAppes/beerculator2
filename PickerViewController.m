@@ -14,6 +14,7 @@
 #import "GAI.h"
 #import "GAITracker.h"
 #import "GAIFields.h"
+#import "GAIDictionaryBuilder.h"
 
 @interface PickerViewController ()
 
@@ -89,6 +90,7 @@
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     
     [tracker set:kGAIScreenName value:[PresetValuesHelper logTitleFactoryWithBeverageType:beverage andStage:stage]];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 
     
     

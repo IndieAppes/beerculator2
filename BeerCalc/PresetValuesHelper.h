@@ -35,7 +35,7 @@ typedef enum beerStages
 +(NSArray *) presetABVFactoryWithBeverageType:(beverageType)beverage;
 +(NSString *) titleFactoryWithBeverageType:(beverageType)beverage andStage:(beerStage)stage;
 +(NSString *) logTitleFactoryWithBeverageType:(beverageType)beverage andStage:(beerStage)stage;
-
++(NSString *) beverageTypeToString:(beverageType)beverage;
 
 
 

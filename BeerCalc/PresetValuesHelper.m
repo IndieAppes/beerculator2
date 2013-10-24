@@ -19,7 +19,7 @@
             array = @[ @"Fosters", @"Stella", @"Carlsberg", @"Carling", @"Budweiser", @"Own Brand" ];
             break;
         case myDrinkCider:
-            array = @[@"Bulmers", @"Strongbow", @"Gaymers", @"Kopparberg", @"Brothers", @"Magners", @"Own Brand", @"White Cider", @"Scrumpy cider"];
+            array = @[@"Bulmers", @"Strongbow", @"Gaymers", @"Kopparberg", @"Brothers", @"Magners", @"Own Brand", @"White Cider", @"Scrumpy"];
             break;
         case myDrinkSpirits:
             array = @[@"Vodka", @"Whiskey", @"Light Rum", @"Dark Rum", @"Gin", @"Tequila", @"Liqueur"];
@@ -204,23 +204,7 @@
 
 +(NSString *) logTitleFactoryWithBeverageType:(beverageType)beverage andStage:(beerStage)stage
 {
-    NSString* logTitle = [[NSString alloc] init];
-    switch (beverage) {
-        case myDrinkBeer:
-            logTitle = @"Beer";
-            break;
-        case myDrinkCider:
-            logTitle = @"Cider";
-            break;
-        case myDrinkWine:
-            logTitle = @"Wine";
-            break;
-        case myDrinkSpirits:
-            logTitle = @"Spirits";
-            break;
-        default:
-            break;
-    }
+    NSString* logTitle = [self beverageTypeToString:beverage];
     
     logTitle = [logTitle stringByAppendingString:@" - "];
     switch (stage) {
@@ -243,8 +227,30 @@
         default:
             break;
     }
-    
+    NSLog(logTitle);
     return logTitle;
+}
+
++ (NSString *) beverageTypeToString:(beverageType)beverage
+{
+    NSString * beverageString = [[NSString alloc] init];
+    switch (beverage) {
+        case myDrinkBeer:
+            beverageString = @"Beer";
+            break;
+        case myDrinkCider:
+            beverageString = @"Cider";
+            break;
+        case myDrinkWine:
+            beverageString = @"Wine";
+            break;
+        case myDrinkSpirits:
+            beverageString = @"Spirits";
+            break;
+        default:
+            break;
+    }
+    return beverageString;
 }
 
 

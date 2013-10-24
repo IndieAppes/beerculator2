@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PresetValuesHelper.h"
 
 @interface BeerCell : UITableViewCell
 

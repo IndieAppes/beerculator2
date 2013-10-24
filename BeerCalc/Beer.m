@@ -25,6 +25,13 @@
     return self;
 }
 
+-(id)initWithBeverageType:(beverageType)beverage
+{
+    self = [self init];
+    self.beverage = beverage;
+    return self;
+}
+
 - (NSDecimalNumber *) pricePerUnit
 {
     NSNumber * number = [NSNumber numberWithInt:(canVolume * numberOfCans)];
@@ -50,7 +57,7 @@
     return pricePerMl;
 }
 
-- (NSString *) getSubtitleStringDescrtiption
+- (NSString *) getSubtitleStringDescription
 {
     NSNumberFormatter * formatter = [[NSNumberFormatter alloc] init];
     formatter.numberStyle = NSNumberFormatterCurrencyStyle;
@@ -68,6 +75,12 @@
     [descriptionString appendString:@"%, "];
     [descriptionString appendString:[formatter stringFromNumber:self.price]];
     return descriptionString;
+}
+
+- (NSString *) googleAnalyticsLabel
+{
+    NSString * label = [self.brand stringByAppendingString:@" "];
+    return [label stringByAppendingString:[self getSubtitleStringDescription]];
 }
 
 @end
