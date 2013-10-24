@@ -134,7 +134,7 @@
         if (CGRectContainsPoint(rect, longPressPoint))
         {
             // do stuff:
-            [PopoverView showPopoverAtPoint:popoverOrigin inView:self.view withTitle:@"Beverage:" withStringArray:[NSArray arrayWithObjects:@"Cider", @"Wine", @"Spirit", nil]  delegate:self];
+            [PopoverView showPopoverAtPoint:popoverOrigin inView:self.view withTitle:@"Drink:" withStringArray:[NSArray arrayWithObjects:@"Cider", @"Wine", @"Spirit", nil]  delegate:self];
             
         }
     }
