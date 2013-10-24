@@ -8,11 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "PickerViewController.h"
+#import "PopoverView.h"
 
-@interface BeerTableController : UITableViewController <BeerUpdateDelegate>
+#import "GAITracker.h"
+
+@interface BeerTableController : UITableViewController <BeerUpdateDelegate, PopoverViewDelegate>
 
 @property (nonatomic, retain) NSMutableArray * beers;
 @property (nonatomic, strong) IBOutlet UISegmentedControl * sortPicker;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem * addBeverageButton;
+
 - (IBAction) sortListAppropriately;
+
 
 @end

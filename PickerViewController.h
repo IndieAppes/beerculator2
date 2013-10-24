@@ -22,6 +22,7 @@
 @property (nonatomic, strong) Beer * beerToBuild;
 
 @property (nonatomic, assign) beerStage stage;
+@property (nonatomic, assign) beverageType beverage;
 
 @property (nonatomic, weak) IBOutlet footerPicker* footer;
 

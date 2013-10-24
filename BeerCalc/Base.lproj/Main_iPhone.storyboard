@@ -84,11 +84,12 @@
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="5E6-FR-9BM">
                             <connections>
-                                <segue destination="954-NB-Akr" kind="push" id="El4-UV-mbO"/>
+                                <segue destination="954-NB-Akr" kind="push" identifier="initiatePickerView" id="El4-UV-mbO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addBeverageButton" destination="5E6-FR-9BM" id="1lN-pr-tMV"/>
                         <outlet property="sortPicker" destination="xrC-Td-zDe" id="vHV-4j-e6C"/>
                     </connections>
                 </tableViewController>

@@ -9,16 +9,28 @@
 #import "BeerTableController.h"
 #import "Beer.h"
 #import "BeerCell.h"
+#import "PresetValuesHelper.h"
+#import "PopoverView.h"
+
+#import "GAI.h"
+#import "GAITracker.h"
+#import "GAIFields.h"
+#import "GAIDictionaryBuilder.h"
+#import "TestFlight.h"
+
 
 @interface BeerTableController ()
 
 @property Beer * initialExampleBeer;
+@property beverageType beverage;
 @end
 
 @implementation BeerTableController
 @synthesize beers;
 @synthesize sortPicker;
 @synthesize initialExampleBeer;
+@synthesize addBeverageButton;
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -37,6 +49,11 @@
                                                bundle:[NSBundle mainBundle]]
          forCellReuseIdentifier:@"beerCell"];
     
+    id<GAITracker> defaultTracker = [[GAI sharedInstance] defaultTracker];
+    [defaultTracker set:kGAIScreenName value:@"Beer Table"];
+    
+    // Send the screen view.
+    [defaultTracker send:[[GAIDictionaryBuilder createAppView] build]];
     BOOL didRunBefore = [[NSUserDefaults standardUserDefaults] boolForKey:@"didRunBefore"];
     
     if (!didRunBefore) {
@@ -47,10 +64,7 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
-    // [self.tableView setContentInset:UIEdgeInsetsMake(20.0f, self.tableView.contentInset.left, self.tableView.contentInset.bottom, self.tableView.contentInset.right)];
-    // adjust insets for iOS 7
-    // uncomment if we decide to remove nav bar
-    
+    self.beverage = myDrinkBeer;
     
     // set up and initialize our example Beer
     
@@ -71,12 +85,79 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    // set up the long press on button
+    UILongPressGestureRecognizer *gr = [[UILongPressGestureRecognizer alloc] init];
+    [gr setMinimumPressDuration:0.2];
+    [gr addTarget:self action:@selector(longPressedAddNewBeverageButton:)];
+    [self.navigationController.navigationBar  addGestureRecognizer:gr];
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    self.beverage = myDrinkBeer;
+    self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
+    self.navigationController.navigationBar.backgroundColor = [UIColor orangeColor];
+
+    return;
+}
+
+- (void) longPressedAddNewBeverageButton:(UILongPressGestureRecognizer*)sender;
+{
+    // first check the nav-view for plus button frame rough location
+    if (sender.state == UIGestureRecognizerStateEnded)
+    {
+        // set a default rectangle in case we don't find the back button for some reason
+        [TestFlight passCheckpoint:@"Initialized multipicker"];
+        CGRect rect = CGRectMake(277, 6, 38, 30);
+        // default location
+        
+        // iterate through the subviews looking for something that looks like it might be the right location to be the back button
+        
+        for (UIView *subview in self.navigationController.navigationBar.subviews)
+        {
+            if (subview.frame.origin.x > 270)
+            {
+                rect = subview.frame;
+                break;
+            }
+        }
+        
+        // ok, let's get the point of the long press
+        
+        CGPoint longPressPoint = [sender locationInView:self.navigationController.navigationBar];
+        
+        // if the long press point in the rectangle then do whatever
+        
+        CGPoint popoverOrigin = CGPointMake(277 + (38/2), 0);
+        
+        if (CGRectContainsPoint(rect, longPressPoint))
+        {
+            // do stuff:
+            [PopoverView showPopoverAtPoint:popoverOrigin inView:self.view withTitle:@"Drink:" withStringArray:[NSArray arrayWithObjects:@"Cider", @"Wine", @"Spirit", nil]  delegate:self];
+            
+        }
+    }
+    
+    return;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - PopoverViewDelegate Methods
+
+- (void)popoverView:(PopoverView *)popoverView didSelectItemAtIndex:(NSInteger)index;
+{
+    self.beverage = index + 1;
+    NSLog(@"%d", self.beverage);
+    [self performSegueWithIdentifier: @"initiatePickerView" sender: self];
+    [TestFlight passCheckpoint:[@"Started picking a " stringByAppendingString:[PresetValuesHelper beverageTypeToString:self.beverage]]];
+    [popoverView dismiss];
+
 }
 
 #pragma mark - Table view data source
@@ -102,6 +183,8 @@
     
     Beer * beer = [beers objectAtIndex:indexPath.row];
     
+    // format based on drink type
+    
     cell.nameLabel.text = beer.brand;
 
     NSNumberFormatter * formatter = [[NSNumberFormatter alloc] init];
@@ -115,33 +198,57 @@
     {
         cell.priceLabel.text = [formatter stringFromNumber:beer.pricePerVolume];
     }
-
-    NSMutableString * descriptionString = [[NSMutableString alloc] init];
+    
     
     // build string of form "4 x 440ml @ 4.0%, £4.00"
     
-    [descriptionString appendString:[@(beer.numberOfCans) stringValue]];
-    [descriptionString appendString:@" x "];
-    [descriptionString appendString:[@(beer.canVolume) stringValue]];
-    [descriptionString appendString:@"ml @ "];
-    [descriptionString appendString:beer.alcoholByVolume.stringValue];
-    [descriptionString appendString:@"%, "];
-    [descriptionString appendString:[formatter stringFromNumber:beer.price]];
+
     
     // im the 8 lines instead of using a fucking stringBuilder class or operators on strings lol
     
-    cell.descriptionLabel.text = descriptionString;
+    cell.descriptionLabel.text = [beer getSubtitleStringDescription];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
+
 }
 
 - (void) addBeerToList:(Beer *)beer
 {
+    [TestFlight passCheckpoint:@"Added a drink"];
+
     [self.beers addObject:beer];
     if ([self.beers containsObject:initialExampleBeer]) {
         [self.beers removeObject:initialExampleBeer];
     }
-    // delete the example beer to keep it clean
     
+    // Google analytics
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    
+    NSString * category = [PresetValuesHelper beverageTypeToString:beer.beverage];
+    category = [category stringByAppendingString:@" added"];
+    
+    NSString* action;
+    NSNumberFormatter * formatter = [[NSNumberFormatter alloc] init];
+    formatter.numberStyle = NSNumberFormatterCurrencyStyle;
+    formatter.locale = [NSLocale currentLocale];
+    if (self.sortPicker.selectedSegmentIndex == 0)
+    {
+        action = @"Price per unit";
+        action = [action stringByAppendingString:[formatter stringFromNumber:beer.pricePerUnit]];
+    }
+    else
+    {
+        action = @"Price per pint";
+        action = [action stringByAppendingString:[formatter stringFromNumber:beer.pricePerVolume]];
+    }
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:category     // Event category (required)
+                                                          action:action  // Event action (required)
+                                                           label:beer.getSubtitleStringDescription          // Event label
+                                                           value:nil] build]];    // Event value
+
+    
+    NSLog(category, [beer.pricePerUnit description], beer.getSubtitleStringDescription);
+    // delete the example beer to keep it clean
     [self sortListAppropriately];
     
     [self.tableView reloadData];
@@ -168,6 +275,21 @@
         }];
 
     }
+    
+    // conditionally format top cell
+    
+    BeerCell* cell = self.tableView.visibleCells[0];
+    
+    if (beers.count > 1) {
+        //rgba(0, 1, 0.042, 0.27)
+        //rgba(0.27, 0.82, 1, 0.27)
+        cell.backgroundColor = [UIColor colorWithRed:1.f green:0.5f blue:0.f alpha:1.f];
+        cell.nameLabel.textColor = [UIColor whiteColor];
+        cell.descriptionLabel.textColor = [UIColor whiteColor];
+        cell.priceLabel.textColor = [UIColor whiteColor];
+        
+    }
+
     [self.tableView reloadData];
     return;
 }
@@ -224,13 +346,37 @@
     // Pass the selected object to the new view controller.
     PickerViewController * destVC = [segue destinationViewController];
     destVC.beerTableDelegate = self;
+    destVC.beverage = self.beverage;
+//    destVC.beerToBuild = [Beer ini
+    // ADJUST TINTS
     
+    UIColor* tintColor;
+    switch (self.beverage) {
+        case myDrinkBeer:
+            tintColor = [UIColor orangeColor];
+            break;
+        case myDrinkCider:
+            tintColor = [UIColor colorWithHue:0.33 saturation:1.00 brightness:0.8 alpha:1];
+            break;
+        case myDrinkWine:
+            tintColor = [UIColor redColor];
+            break;
+        case myDrinkSpirits:
+            tintColor = [UIColor blueColor];
+            break;
+            
+        default:
+            break;
+    }
+    self.navigationController.navigationBar.tintColor = tintColor;
+    self.navigationController.navigationBar.backgroundColor = tintColor;
+    return;
     //PickerPageViewController * destVC = [segue destinationViewController];
     //destVC.BeerDelegate = self;
     // set the beerdelegate
     
     // TODO: maybe add a class check incase we add other segues and break shit
-    
+
 }
 
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7721294417E4890E008F0622 /* BeerTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7721294317E4890E008F0622 /* BeerTableController.m */; };
+		77583C3518108A3100CF3734 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A3F87617FDDB5800D3EB7B /* Reveal.framework */; };
 		77A3E1B917E5C676009620EF /* BeerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A3E1B817E5C676009620EF /* BeerCell.m */; };
 		77A3E1BB17E5CDD4009620EF /* BeerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77A3E1BA17E5CDD4009620EF /* BeerCell.xib */; };
 		77A3E1BE17E5CF1C009620EF /* Beer.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A3E1BD17E5CF1C009620EF /* Beer.m */; };
@@ -32,6 +33,15 @@
 		77A58B8517E47F01001FE7B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A58B6417E47F01001FE7B2 /* UIKit.framework */; };
 		77A58B8D17E47F01001FE7B2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77A58B8B17E47F01001FE7B2 /* InfoPlist.strings */; };
 		77A58B8F17E47F01001FE7B2 /* BeerCalcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A58B8E17E47F01001FE7B2 /* BeerCalcTests.m */; };
+		77CBE7C31816FC2D00346919 /* PopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CBE7C11816FC2D00346919 /* PopoverView.m */; };
+		77CBE7CB1817209900346919 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77CBE7C51817209900346919 /* libTestFlight.a */; };
+		77CBE7CC1817209900346919 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 77CBE7C61817209900346919 /* README.md */; };
+		77CBE7CD1817209900346919 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 77CBE7C71817209900346919 /* release_notes.md */; };
+		77CBE7CF1817229000346919 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 77CBE7CE1817229000346919 /* libz.dylib */; };
+		77CBE7D918172C6200346919 /* libGoogleAnalytics_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77CBE7D818172C6200346919 /* libGoogleAnalytics_debug.a */; };
+		77CBE7DB18172C8700346919 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77CBE7DA18172C8700346919 /* CoreData.framework */; };
+		77CBE7DD18172C9500346919 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77CBE7DC18172C9500346919 /* SystemConfiguration.framework */; };
+		77CBE7EF1817315E00346919 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77CBE7EE1817315E00346919 /* AdSupport.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +92,28 @@
 		77A58B8A17E47F01001FE7B2 /* BeerculatorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BeerculatorTests-Info.plist"; sourceTree = "<group>"; };
 		77A58B8C17E47F01001FE7B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		77A58B8E17E47F01001FE7B2 /* BeerCalcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeerCalcTests.m; sourceTree = "<group>"; };
+		77CBE7BF1816FC2D00346919 /* PopoverView_Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverView_Configuration.h; sourceTree = "<group>"; };
+		77CBE7C01816FC2D00346919 /* PopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverView.h; sourceTree = "<group>"; };
+		77CBE7C11816FC2D00346919 /* PopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverView.m; sourceTree = "<group>"; };
+		77CBE7C21816FC2D00346919 /* PopoverViewCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverViewCompatibility.h; sourceTree = "<group>"; };
+		77CBE7C51817209900346919 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		77CBE7C61817209900346919 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		77CBE7C71817209900346919 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
+		77CBE7C81817209900346919 /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
+		77CBE7C91817209900346919 /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
+		77CBE7CA1817209900346919 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		77CBE7CE1817229000346919 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		77CBE7D218172C6200346919 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		77CBE7D318172C6200346919 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		77CBE7D418172C6200346919 /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
+		77CBE7D518172C6200346919 /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
+		77CBE7D618172C6200346919 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		77CBE7D718172C6200346919 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		77CBE7D818172C6200346919 /* libGoogleAnalytics_debug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics_debug.a; sourceTree = "<group>"; };
+		77CBE7DA18172C8700346919 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		77CBE7DC18172C9500346919 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		77CBE7DE18172E4D00346919 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
+		77CBE7EE1817315E00346919 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,11 +121,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77CBE7EF1817315E00346919 /* AdSupport.framework in Frameworks */,
+				77CBE7DD18172C9500346919 /* SystemConfiguration.framework in Frameworks */,
+				77CBE7DB18172C8700346919 /* CoreData.framework in Frameworks */,
+				77CBE7CF1817229000346919 /* libz.dylib in Frameworks */,
+				77583C3518108A3100CF3734 /* Reveal.framework in Frameworks */,
 				77A3F87B17FDDC4F00D3EB7B /* QuartzCore.framework in Frameworks */,
 				77A3F87917FDDC4500D3EB7B /* CFNetwork.framework in Frameworks */,
 				77A58B6317E47F01001FE7B2 /* CoreGraphics.framework in Frameworks */,
 				77A58B6517E47F01001FE7B2 /* UIKit.framework in Frameworks */,
 				77A58B6117E47F01001FE7B2 /* Foundation.framework in Frameworks */,
+				77CBE7CB1817209900346919 /* libTestFlight.a in Frameworks */,
+				77CBE7D918172C6200346919 /* libGoogleAnalytics_debug.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +152,8 @@
 		77A58B5417E47F00001FE7B2 = {
 			isa = PBXGroup;
 			children = (
+				77CBE7D118172C6200346919 /* Google Analytics */,
+				77CBE7C41817209900346919 /* TestFlightSDK2.0.2 */,
 				77A58B6617E47F01001FE7B2 /* BeerCalc */,
 				77A58B8817E47F01001FE7B2 /* BeerCalcTests */,
 				77A58B5F17E47F01001FE7B2 /* Frameworks */,
@@ -132,6 +173,10 @@
 		77A58B5F17E47F01001FE7B2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				77CBE7EE1817315E00346919 /* AdSupport.framework */,
+				77CBE7DC18172C9500346919 /* SystemConfiguration.framework */,
+				77CBE7DA18172C8700346919 /* CoreData.framework */,
+				77CBE7CE1817229000346919 /* libz.dylib */,
 				77A3F87A17FDDC4F00D3EB7B /* QuartzCore.framework */,
 				77A3F87817FDDC4500D3EB7B /* CFNetwork.framework */,
 				77A3F87617FDDB5800D3EB7B /* Reveal.framework */,
@@ -155,6 +200,8 @@
 				77A3E1BA17E5CDD4009620EF /* BeerCell.xib */,
 				7721294217E4890E008F0622 /* BeerTableController.h */,
 				7721294317E4890E008F0622 /* BeerTableController.m */,
+				77A3F87C17FF1DD400D3EB7B /* footerPicker.h */,
+				77A3F87D17FF1DD400D3EB7B /* footerPicker.m */,
 				77A58B7B17E47F01001FE7B2 /* Images.xcassets */,
 				77A58B7517E47F01001FE7B2 /* Main_iPad.storyboard */,
 				77A58B7217E47F01001FE7B2 /* Main_iPhone.storyboard */,
@@ -163,8 +210,10 @@
 				77A3E1C817E71870009620EF /* PickerCell.xib */,
 				77A3E1C217E6213F009620EF /* PickerViewController.h */,
 				77A3E1C317E6213F009620EF /* PickerViewController.m */,
-				77A3F87C17FF1DD400D3EB7B /* footerPicker.h */,
-				77A3F87D17FF1DD400D3EB7B /* footerPicker.m */,
+				77CBE7C01816FC2D00346919 /* PopoverView.h */,
+				77CBE7C11816FC2D00346919 /* PopoverView.m */,
+				77CBE7BF1816FC2D00346919 /* PopoverView_Configuration.h */,
+				77CBE7C21816FC2D00346919 /* PopoverViewCompatibility.h */,
 				77A3E1C517E70913009620EF /* PresetValuesHelper.h */,
 				77A3E1C617E70913009620EF /* PresetValuesHelper.m */,
 				77A58B6717E47F01001FE7B2 /* Supporting Files */,
@@ -201,6 +250,34 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		77CBE7C41817209900346919 /* TestFlightSDK2.0.2 */ = {
+			isa = PBXGroup;
+			children = (
+				77CBE7C51817209900346919 /* libTestFlight.a */,
+				77CBE7C61817209900346919 /* README.md */,
+				77CBE7C71817209900346919 /* release_notes.md */,
+				77CBE7C81817209900346919 /* TestFlight+AsyncLogging.h */,
+				77CBE7C91817209900346919 /* TestFlight+ManualSessions.h */,
+				77CBE7CA1817209900346919 /* TestFlight.h */,
+			);
+			path = TestFlightSDK2.0.2;
+			sourceTree = "<group>";
+		};
+		77CBE7D118172C6200346919 /* Google Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				77CBE7D218172C6200346919 /* GAI.h */,
+				77CBE7D318172C6200346919 /* GAIDictionaryBuilder.h */,
+				77CBE7D418172C6200346919 /* GAIFields.h */,
+				77CBE7D518172C6200346919 /* GAILogger.h */,
+				77CBE7D618172C6200346919 /* GAITrackedViewController.h */,
+				77CBE7D718172C6200346919 /* GAITracker.h */,
+				77CBE7D818172C6200346919 /* libGoogleAnalytics_debug.a */,
+				77CBE7DE18172E4D00346919 /* libGoogleAnalyticsServices.a */,
+			);
+			path = "Google Analytics";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -211,6 +288,7 @@
 				77A58B5917E47F01001FE7B2 /* Sources */,
 				77A58B5A17E47F01001FE7B2 /* Frameworks */,
 				77A58B5B17E47F01001FE7B2 /* Resources */,
+				77CBE7D0181725A200346919 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -251,9 +329,6 @@
 					77A58B5C17E47F01001FE7B2 = {
 						DevelopmentTeam = 7M8BR7R488;
 					};
-					77A58B8017E47F01001FE7B2 = {
-						TestTargetID = 77A58B5C17E47F01001FE7B2;
-					};
 				};
 			};
 			buildConfigurationList = 77A58B5817E47F00001FE7B2 /* Build configuration list for PBXProject "Beerculator" */;
@@ -280,9 +355,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77CBE7CD1817209900346919 /* release_notes.md in Resources */,
 				77A58B7717E47F01001FE7B2 /* Main_iPad.storyboard in Resources */,
 				77A3E1BB17E5CDD4009620EF /* BeerCell.xib in Resources */,
 				77A58B7C17E47F01001FE7B2 /* Images.xcassets in Resources */,
+				77CBE7CC1817209900346919 /* README.md in Resources */,
 				77A3E1C917E71870009620EF /* PickerCell.xib in Resources */,
 				77A58B7417E47F01001FE7B2 /* Main_iPhone.storyboard in Resources */,
 				77A58B6B17E47F01001FE7B2 /* InfoPlist.strings in Resources */,
@@ -299,6 +376,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		77CBE7D0181725A200346919 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		77A58B5917E47F01001FE7B2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -310,6 +403,7 @@
 				7721294417E4890E008F0622 /* BeerTableController.m in Sources */,
 				77A3E1B917E5C676009620EF /* BeerCell.m in Sources */,
 				77A3E1CC17E71E9C009620EF /* PickerCell.m in Sources */,
+				77CBE7C31816FC2D00346919 /* PopoverView.m in Sources */,
 				77A3F87E17FF1DD400D3EB7B /* footerPicker.m in Sources */,
 				77A3E1C417E6213F009620EF /* PickerViewController.m in Sources */,
 				77A3E1C717E70913009620EF /* PresetValuesHelper.m in Sources */,
@@ -445,7 +539,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Josh Palmer (7M8BR7R488)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Josh Palmer (38NT232752)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/joshpalmer/Documents/Coding/BeerCalc,
@@ -453,9 +547,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeerCalc/Beerculator-Prefix.pch";
 				INFOPLIST_FILE = "BeerCalc/Beerculator-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/joshpalmer/Documents/Coding/BeerCalc/TestFlightSDK2.0.2,
+					"/Users/joshpalmer/Documents/Coding/BeerCalc/Google\\ Analytics",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Beerculator;
-				PROVISIONING_PROFILE = "FC9ED1D3-A3A9-409A-A2FE-DDEBBD756F3E";
+				PROVISIONING_PROFILE = "E7B3F9D0-2D49-4DC9-962D-4C3380818DEC";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -466,7 +565,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Josh Palmer (7M8BR7R488)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Josh Palmer (38NT232752)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/joshpalmer/Documents/Coding/BeerCalc,
@@ -474,9 +573,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeerCalc/Beerculator-Prefix.pch";
 				INFOPLIST_FILE = "BeerCalc/Beerculator-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/joshpalmer/Documents/Coding/BeerCalc/TestFlightSDK2.0.2,
+					"/Users/joshpalmer/Documents/Coding/BeerCalc/Google\\ Analytics",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Beerculator;
-				PROVISIONING_PROFILE = "FC9ED1D3-A3A9-409A-A2FE-DDEBBD756F3E";
+				PROVISIONING_PROFILE = "E7B3F9D0-2D49-4DC9-962D-4C3380818DEC";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -485,7 +589,6 @@
 		77A58B9617E47F01001FE7B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BeerCalc.app/BeerCalc";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -499,7 +602,6 @@
 				);
 				INFOPLIST_FILE = "BeerCalcTests/BeerculatorTests-Info.plist";
 				PRODUCT_NAME = BeerculatorTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -507,7 +609,6 @@
 		77A58B9717E47F01001FE7B2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BeerCalc.app/BeerCalc";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -517,7 +618,6 @@
 				GCC_PREFIX_HEADER = "BeerCalc/BeerCalc-Prefix.pch";
 				INFOPLIST_FILE = "BeerCalcTests/BeerculatorTests-Info.plist";
 				PRODUCT_NAME = BeerculatorTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;

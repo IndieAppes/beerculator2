@@ -11,6 +11,11 @@
 #import "PickerCell.h"
 #import "footerPicker.h"
 
+#import "GAI.h"
+#import "GAITracker.h"
+#import "GAIFields.h"
+#import "GAIDictionaryBuilder.h"
+
 @interface PickerViewController ()
 
 @property UIViewController* nextViewController;
@@ -25,6 +30,7 @@
 @synthesize nextViewController;
 @synthesize footer;
 @synthesize beerTableDelegate;
+@synthesize beverage;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil // withMode:(beerStage)mode withBeer:(Beer *)beerBeingBuilt
@@ -41,6 +47,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.tintColor = self.navigationController.navigationBar.tintColor;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
 	// Do any additional setup after loading the view.
     [self registerForKeyboardNotifications];
     UINib * cellNib = [UINib nibWithNibName:@"PickerCell" bundle:nil];
@@ -49,31 +57,26 @@
     // populate our presets based on the selected mode/stage
     // set nav view title and set small back button
     // set footer text stuff
-    
+
     switch (stage) {
         case myBeerBrand:
-            self.presetValues = [[PresetValuesHelper presetBrandsFactory] mutableCopy];
-            self.title = @"Beer name";
+            self.presetValues = [[PresetValuesHelper presetBrandsFactoryWithBeverageType:beverage ] mutableCopy];
             break;
         
         case myBeerNumberOfCans:
-            self.presetValues = [[PresetValuesHelper presetNumberOfCansFactory] mutableCopy];
-            self.title = @"Number of cans";
+            self.presetValues = [[PresetValuesHelper presetNumberOfCansFactoryWithBeverageType:beverage] mutableCopy];
             break;
         
         case myBeerCanVolume:
-            self.presetValues = [[PresetValuesHelper presetVolumesFactory] mutableCopy];
-            self.title = @"Volume of each can";
+            self.presetValues = [[PresetValuesHelper presetVolumesFactoryWithBeverageType:beverage] mutableCopy];
             break;
         
         case myBeerAlcoholByVolume:
-            self.presetValues = [[PresetValuesHelper presetABVFactory] mutableCopy];
-            self.title = @"Percentage alcohol by volume";
-            break;
-        case myBeerPrice:
-            self.title = @"Price";
+            self.presetValues = [[PresetValuesHelper presetABVFactoryWithBeverageType:beverage] mutableCopy];
             break;
             
+        // no presets or title for price
+        case myBeerPrice:
         default:
             break;
     }
@@ -81,9 +84,14 @@
         self.beerToBuild = [[Beer alloc] init];
     }
     
-    // init the beer if we don't already have one
+    self.title = [PresetValuesHelper titleFactoryWithBeverageType:beverage andStage:stage];
+    // set the title
     
-//    [self.presetValues addObject:@"Other"];
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    
+    [tracker set:kGAIScreenName value:[PresetValuesHelper logTitleFactoryWithBeverageType:beverage andStage:stage]];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+
     
     
     // forward swipe gesture recognizer
@@ -113,6 +121,8 @@
 {
     footerPicker *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:
                                          UICollectionElementKindSectionFooter withReuseIdentifier:@"footerPicker" forIndexPath:indexPath];
+    
+    footerView.tintColor = self.view.tintColor;
     NSLocale *theLocale = [NSLocale currentLocale];
     NSString *symbol = [theLocale objectForKey:NSLocaleCurrencySymbol];
     NSString* baseText = @"Other:  ";
@@ -152,6 +162,7 @@
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     PickerCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"pickerCell" forIndexPath:indexPath];
+    cell.tintColor = self.view.tintColor;
     
     // conditionally format based on what stage we're in
     
@@ -201,6 +212,8 @@
             break;
     }
     
+    [cell.pickerLabel setNeedsUpdateConstraints];
+    
     return cell;
 }
 
@@ -218,13 +231,22 @@
 
 - (void)advanceBeerStage
 {
-    // [self.delegate updateBeer:beerToBuild];
     
     if (stage != myBeerPrice) {
         PickerViewController * nextVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PickerViewController"];
-        nextVC.stage = stage + 1;
+        if ((beverage == (myDrinkSpirits) || (beverage == myDrinkWine)) && stage == myBeerBrand)
+        {
+            nextVC.stage = stage + 2;
+            self.beerToBuild.numberOfCans = 1;
+            // skip the myBeerCans stage for spirits and wines
+        }
+        else
+        {
+            nextVC.stage = stage + 1;
+        }
         
         nextVC.beerToBuild = beerToBuild;
+        nextVC.beverage = beverage;
         nextVC.beerTableDelegate = self.beerTableDelegate;
         
         self.nextViewController = nextVC;
@@ -369,7 +391,7 @@
     NSDictionary* info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(self.navigationController.navigationBar.frame.size.height + 20, 0.0, kbSize.height + 20, 0.0);
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0, 0.0, kbSize.height + 20, 0.0);
     self.collectionView.contentInset = contentInsets;
     self.collectionView.scrollIndicatorInsets = contentInsets;
     [self.collectionView scrollRectToVisible:footer.frame animated:YES];
@@ -395,7 +417,7 @@
             [self.footer setSelectedRange:NSMakeRange(self.footer.customPicker.text.length - 2, 0)];
             break;
         case myBeerPrice:
-            NSLog(@"things are broken! shouldn't get here");
+            // do nothing
             break;
     }
 
@@ -405,7 +427,7 @@
 // Called when the UIKeyboardWillHideNotification is sent
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification
 {
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(self.navigationController.navigationBar.frame.size.height + 20, 0, 0, 0);
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0, 0, 0, 0);
 //    self.navigationController.navigationBar.frame.size.height
     self.collectionView.contentInset = contentInsets;
     self.collectionView.scrollIndicatorInsets = contentInsets;

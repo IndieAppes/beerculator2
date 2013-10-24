@@ -25,6 +25,13 @@
     return self;
 }
 
+-(id)initWithBeverageType:(beverageType)beverage
+{
+    self = [self init];
+    self.beverage = beverage;
+    return self;
+}
+
 - (NSDecimalNumber *) pricePerUnit
 {
     NSNumber * number = [NSNumber numberWithInt:(canVolume * numberOfCans)];
@@ -48,6 +55,32 @@
     pricePerMl = [pricePerMl decimalNumberByDividingBy:totalDecimalVolume];
     // TODO: implement this
     return pricePerMl;
+}
+
+- (NSString *) getSubtitleStringDescription
+{
+    NSNumberFormatter * formatter = [[NSNumberFormatter alloc] init];
+    formatter.numberStyle = NSNumberFormatterCurrencyStyle;
+    formatter.locale = [NSLocale currentLocale];
+    
+    NSMutableString * descriptionString = [[NSMutableString alloc] init];
+    
+    // build string of form "4 x 440ml @ 4.0%, £4.00"
+    
+    [descriptionString appendString:[@(self.numberOfCans) stringValue]];
+    [descriptionString appendString:@" x "];
+    [descriptionString appendString:[@(self.canVolume) stringValue]];
+    [descriptionString appendString:@"ml @ "];
+    [descriptionString appendString:self.alcoholByVolume.stringValue];
+    [descriptionString appendString:@"%, "];
+    [descriptionString appendString:[formatter stringFromNumber:self.price]];
+    return descriptionString;
+}
+
+- (NSString *) googleAnalyticsLabel
+{
+    NSString * label = [self.brand stringByAppendingString:@" "];
+    return [label stringByAppendingString:[self getSubtitleStringDescription]];
 }
 
 @end
