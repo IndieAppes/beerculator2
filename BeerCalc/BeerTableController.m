@@ -16,6 +16,8 @@
 #import "GAITracker.h"
 #import "GAIFields.h"
 #import "GAIDictionaryBuilder.h"
+#import "TestFlight.h"
+
 
 @interface BeerTableController ()
 
@@ -106,7 +108,7 @@
     if (sender.state == UIGestureRecognizerStateEnded)
     {
         // set a default rectangle in case we don't find the back button for some reason
-        
+        [TestFlight passCheckpoint:@"Initialized multipicker"];
         CGRect rect = CGRectMake(277, 6, 38, 30);
         // default location
         
@@ -153,6 +155,7 @@
     self.beverage = index + 1;
     NSLog(@"%d", self.beverage);
     [self performSegueWithIdentifier: @"initiatePickerView" sender: self];
+    [TestFlight passCheckpoint:[@"Started picking a " stringByAppendingString:[PresetValuesHelper beverageTypeToString:self.beverage]]];
     [popoverView dismiss];
 
 }
@@ -211,6 +214,8 @@
 
 - (void) addBeerToList:(Beer *)beer
 {
+    [TestFlight passCheckpoint:@"Added a drink"];
+
     [self.beers addObject:beer];
     if ([self.beers containsObject:initialExampleBeer]) {
         [self.beers removeObject:initialExampleBeer];
