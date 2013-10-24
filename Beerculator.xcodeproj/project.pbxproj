@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7721294417E4890E008F0622 /* BeerTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7721294317E4890E008F0622 /* BeerTableController.m */; };
-		77583C3518108A3100CF3734 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A3F87617FDDB5800D3EB7B /* Reveal.framework */; };
 		77A3E1B917E5C676009620EF /* BeerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A3E1B817E5C676009620EF /* BeerCell.m */; };
 		77A3E1BB17E5CDD4009620EF /* BeerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77A3E1BA17E5CDD4009620EF /* BeerCell.xib */; };
 		77A3E1BE17E5CF1C009620EF /* Beer.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A3E1BD17E5CF1C009620EF /* Beer.m */; };
@@ -125,7 +124,6 @@
 				77CBE7DD18172C9500346919 /* SystemConfiguration.framework in Frameworks */,
 				77CBE7DB18172C8700346919 /* CoreData.framework in Frameworks */,
 				77CBE7CF1817229000346919 /* libz.dylib in Frameworks */,
-				77583C3518108A3100CF3734 /* Reveal.framework in Frameworks */,
 				77A3F87B17FDDC4F00D3EB7B /* QuartzCore.framework in Frameworks */,
 				77A3F87917FDDC4500D3EB7B /* CFNetwork.framework in Frameworks */,
 				77A58B6317E47F01001FE7B2 /* CoreGraphics.framework in Frameworks */,
